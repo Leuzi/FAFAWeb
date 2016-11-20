@@ -1,0 +1,4 @@
+CSEASON = '2016-2017'
+CITEMS = 25
+CPAGE = 1
+CDEFAULTNEW = 'new.html'
