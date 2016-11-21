@@ -1,5 +1,6 @@
 from django.db import models
 from colorful.fields import RGBColorField
+from seasons.models import Season
 
 # Create your models here.
 
@@ -17,15 +18,15 @@ class Uniform(models.Model):
 
 class Equipment(models.Model):
 	FirstUniform = models.ForeignKey(Uniform,related_name='firstUniform')
-	SecondUniform = models.ForeignKey(Uniform,related_name='secondUniform')
-	Season = models.DateField()
+	SecondUniform = models.ForeignKey(Uniform,related_name='secondUniform',blank=True,null=True)
+	Season = Season()
 
 
 
 class Stadium(models.Model):
-	Name = models.CharField(max_length=25)
-	City = models.CharField(max_length=25)
-	Location = models.URLField(max_length=50)
+	Name = models.CharField(max_length=50)
+	City = models.CharField(max_length=35)
+	Map = models.URLField(max_length=50)
 	Address = models.CharField(max_length=25)
 	
 	def __str__(self):
@@ -33,7 +34,7 @@ class Stadium(models.Model):
 
 class Field(models.Model):
 	Field = models.ForeignKey(Stadium)
-	Season = models.DateField()
+	Season = Season()
 	
 	def __str__(self):
 		return self.Field.Name
