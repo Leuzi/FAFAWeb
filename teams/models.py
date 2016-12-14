@@ -53,6 +53,9 @@ class Logo(models.Model):
 	image = models.ImageField()
 	belongs_to = models.ForeignKey(Team)
 
+	def __str__(self):
+		return self.Team.name
+
 
 class UniformSeason(models.Model):
 	FirstUniform = models.ForeignKey(Uniform,related_name='firstUniform')

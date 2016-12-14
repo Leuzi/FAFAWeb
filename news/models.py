@@ -1,4 +1,5 @@
 from django.db import models
+from teams.models import Team
 
 # Create your models here.
 
@@ -19,6 +20,7 @@ class New(models.Model):
 	GooglePlus = models.PositiveSmallIntegerField(default=0)
 	Slug = models.SlugField(max_length=50)
 	Template = models.ForeignKey(Template, blank=True, null=True)
+	Teams = models.ManyToManyField(Team)
 
 	def __str__(self):
 		return self.Header+'('+str(self.Date)+')'
