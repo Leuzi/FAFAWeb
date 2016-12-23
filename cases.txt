@@ -1,0 +1,128 @@
+Organización
+
+Dado que se crea un club en una región
+cuando se introducen los datos de la región
+entonces debe aparecer en el listado de regiones
+y debe crearse un responsable de la región 
+
+Dado que se crea un club 
+cuando se introducen los datos del club
+entonces debe aparecer en el listado de clubes nacional
+y debe aparecer en el listado de clubes de la región
+y debe asignarse un responsable de club
+
+Dado que se termina una temporada
+cuando se da de alta una nueva temporada
+entonces debe actualizarse el periodo que dura esa competición
+
+Dado que se desea acceder a los datos de un equipo
+cuando se elige al equipo deseado
+entonces deben aparecer los datos del equipo
+y deben aparecer los datos de los jugadores de ese equipo
+
+Dado que deseo filtrar los datos de un equipo
+cuando se elige el filtro (edad,sexo,procedencia,categoría,licencia)
+entonces deben aparecer los datos de ese equipo
+
+Dado que se desea activar una licencia para los clubes
+cuando se asigna una temporada a esa licencia
+entonces la licencia queda activada y disponible para los clubes
+
+Dado que se desea invalidar una licencia para los clubes
+cuando se desactiva la licencia
+entonces la licencia queda desactivada y no está disponible para los clubes
+
+Dado que se desea eliminar una licencia del sistema
+cuando la licencia tiene jugadores registrados
+entonces se deberá asociar una nueva licencia para estos jugadores
+y estos jugadores seran asociados a esta licencia
+y la licencia que se deseaba eliminar quedará eliminada
+y la licencia que se deseaba eliminar no estará asociada a ninguna competición
+
+Dado que se desea elimininar una licencia del sistema
+cuando la licencia no tiene jugadores registrados
+entonces la licencia sera eliminada
+
+Dado que se acuerda un tipo de licencia
+cuando se introducen los datos de la licencia en el sistema
+y se introduce un precio
+y se introduce un listado de regiones en donde se puede sacar esa licencia
+entonces la nueva licencia aparece en el listado de licencias
+
+Director de región
+
+Dado que se crea una nueva competición
+cuando se introducen los datos de la competición
+entonces aparece en el listado de competiciones de la presente temporada
+
+Dado que un equipo se apunta a una competiciones
+cuando se agrega un equipo a esa competición
+entonces el equipo aparece en el listado de participantes
+
+Dado que una licencia es válida para una competición
+cuando se agrega una licencia a una competición
+entonces todos los jugadores que tengan una licencia activa de ese tipo deben aparecer como disponibles
+
+Dado que una licencia deja de ser válida para una competición
+cuando se elimina una licencia de una competición
+entonces todos los jugadores que tengan una licencia activa de ese tipo no deben aparecer como disponibles
+
+Dado que una licencia es dada de alta
+cuando el equipo procede al pago e informa del mismo
+entonces la licencia pasa al estado "EN TRÁMITE"
+
+Dado que una licencia ha sido activada por una compañia aseguradora
+cuando es activa la licencia en el sistema
+entonces la licencia pasa al estado "ACTIVADA"
+
+Dado que un jugador tiene una sanción firme
+cuando el periodo en el que empieza la sancion comienza
+entonces la licencia pasa al estado "SANCIONADO"
+
+Dado que un jugador tiene una sanción firme
+cuando el periodo en el que empieza la sancion termina
+entonces la licencia pasa al estado "ACTIVADA"
+
+Dado que un jugador tiene una lesión
+cuando el periodo en el que empieza la lesión comienza
+entonces la licencia pasa al estado "LESIONADO"
+
+Dado que un jugador tiene una lesión
+cuando el periodo en el que empieza la lesión comienza
+entonces la licencia pasa al estado "ACTIVADA"
+
+Club
+
+Dado que un club obtiene los datos de un nuevo jugadores
+cuando el club introduce los datos de ese jugadores
+entonces aparece en el listado de jugadores del mismo
+
+Dado que un club introduce el DNI de un jugador
+cuando los datos están en el sistema
+y se guardan esos datos
+entonces los datos de ese jugador son asociados a ese equipo
+
+Dado que un club quiere licenciar a un jugador
+cuando elige un tipo de licencia para un jugador
+entonces se crea una nueva licencia 
+y la licencia es para la temporada actual
+y la licencia es para el jugador seleccionado
+y la licencia es para el tipo de licencia elegido
+y la licencia es para el club que la ha pedido
+y la fecha de alta pasa a ser la de ese momento
+y la licencia pasa a estar en el estado "PENDIENTE DE PAGO"
+
+Dado que un club ha pagado una licencia
+cuando informa a través del sistema del pago
+entonces la licencia pasa a estar en el estado "ESPERANDO CONFIRMACIÓN DE PAGO"
+
+Dado que un club juega un partido en una competición
+cuando tiene jugadores la licencias necesarias para esa competición
+y estos jugadores tienen la licencia "ACTIVADA"
+entonces los jugadores deben aparecer en el listado
+
+Dado que un club tiene un documento con los datos de los jugadores
+y ese documento tiene el formato y los datos necesarios
+cuando el equipo sube ese documento
+entonces los nuevos jugadores deben ser dados de alta en el sistema
+los jugadores existentes(localizados por DNI o numero de pasaporte) deben actualizar los datos
