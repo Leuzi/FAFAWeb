@@ -1,3 +1,27 @@
+Alcance del documento
+
+Se desea modelar a grandes rasgos el comportamiento sistema, para ello se especificará una nomenclatura que será usada en los sucesivos documentos, un esquema general de la aplicación y unos escenarios.
+
+Nomenclatura:
+
+Jugador-> Las palabras jugador, miembro de club, personal de club,etc, serán usadas indistintamente en los documentos. Estas personas estarán vinculadas al club de alguna manera (siendo staff, técnico, jugador, responsable) y todas ellas podrán aparecer en un roster de un equipo.
+
+Responsable de club-> Persona designada por un club que se encarga de usar el sistema(introducir nuevos jugadores, realizar pagos,etc) es el responsable de que los datos introducidos sean veraces y de realizar las gestiones que el club le encomiende.
+
+Responsable de región-> Persona encargada de las competiciones de una región. Podrá crear y definir nuevas competiciones ajustando los parámetros para filtrar a los jugadores que pueden participar. Podrá crear nuevos pagos para su región.
+
+Responsable nacional -> Persona encargada por la federación nacional para crear las temporadas, crear nuevas regiones, crear nuevas competiciones y crear los pagos.
+
+Definición del sistema:
+
+El sistema tendrá tres partes diferenciadas, la base de jugadores, el sistema de pagos y la creación de competiciones. 
+
+Los jugadores serán introducidos en el sistema por los equipos que están registrados(menos los que se puedan importar automáticamente desde el sistema anterior). Estos jugadores estarán asociados temporalmente a equipos de tal manera que los datos de un jugador estarán en el sistema aunque este cambie de equipo manteniendo un histórico de licencias.
+
+
+Los pagos se definirán por temporadas, así que lo primero que se deberá definir es la duración de la temporada, cada año lo primero que se hará es
+
+
 Organización
 
 Dado que se crea un club en una región
