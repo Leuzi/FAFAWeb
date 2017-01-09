@@ -10,7 +10,9 @@ Responsable de club-> Persona designada por un club que se encarga de usar el si
 
 Responsable de región-> Persona encargada de las competiciones de una región. Podrá crear y definir nuevas competiciones ajustando los parámetros para filtrar a los jugadores que pueden participar. Podrá crear nuevos pagos para su región.
 
-Responsable nacional -> Persona encargada por la federación nacional para crear las temporadas, crear nuevas regiones, crear nuevas competiciones y crear los pagos.
+Responsable nacional -> Persona encargada por la federación nacional para crear las temporadas, crear nuevas regiones, crear nuevas competiciones y crear los pagos a nivel nacional y regional(si es necesario).
+
+Pago -> Nos referiremos como pago a todo aquello que sea necesario tanto para la práctica deportiva como para la competición. Los pagos tendrán asociados una fecha de inicio y una fecha de fin.
 
 Definición del sistema:
 
@@ -18,9 +20,10 @@ El sistema tendrá tres partes diferenciadas, la base de jugadores, el sistema d
 
 Los jugadores serán introducidos en el sistema por los equipos que están registrados(menos los que se puedan importar automáticamente desde el sistema anterior). Estos jugadores estarán asociados temporalmente a equipos de tal manera que los datos de un jugador estarán en el sistema aunque este cambie de equipo manteniendo un histórico de licencias.
 
+El sistema de pagos será flexible para que en un futuro pueda adaptarse a los cambios necesarios, los pagos tendrán un nombre, un precio, unas características asociadas al jugador que puede pagarlos (sexo, edad,etc) y una fecha de inicio y de fin.
 
-Los pagos se definirán por temporadas, así que lo primero que se deberá definir es la duración de la temporada, cada año lo primero que se hará es
-
+Las competiciones se realizaran durante temporadas, así que se deberán definir la duración de las temporadas cada año (fecha de inicio y fecha de fin). La competición tendrá una duración y los jugadores que participen en ella deberán estar al corriente de uno o de más pagos para poder aparecer en el roster de la misma, además podrán aplicarse más restricciones a alguna competición.
+ 
 
 Organización
 
