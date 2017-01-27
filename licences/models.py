@@ -23,13 +23,8 @@ class LicenceType(models.Model):
 	Price = models.DecimalField(max_digits=5,decimal_places=2)
 	Active = models.BooleanField(default=True)
 	
-class State(models.Model):
-	Name = models.CharField(max_length=50)
-	Shortening = models.CharField(max_length=12)
-	Active = models.BooleanField(default=True)
 	
 class ValidFor(models.Model):
 	Player = models.ForeignKey(Player)
 	Season = models.ForeignKey(Season)
 	Team = models.ForeignKey(Team)
-	State = models.ForeignKey(State)

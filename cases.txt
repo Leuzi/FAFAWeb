@@ -27,16 +27,22 @@ Las competiciones se realizaran durante temporadas, así que se deberán definir
 
 Organización
 
-Dado que se crea un club en una región
+Dado que una región se crea
 cuando se introducen los datos de la región
-entonces debe aparecer en el listado de regiones
-y debe crearse un responsable de la región 
+y cuando se introducen los datos de acceso del responsable de la región
+entonces debe crearse una nueva región
+y debe aparecer en la lista de regiones
+y debe crearse un nuevo responsable de la región
+y el responsable puede acceder al sistema con los datos proporcionados
 
 Dado que se crea un club 
 cuando se introducen los datos del club
+y se introducen los datos del responsable del club
 entonces debe aparecer en el listado de clubes nacional
 y debe aparecer en el listado de clubes de la región
-y debe asignarse un responsable de club
+y debe crearse un nuevo responsable del club
+y el responsable puede acceder al sistema con los datos proporcionados
+
 
 Dado que se termina una temporada
 cuando se da de alta una nueva temporada
