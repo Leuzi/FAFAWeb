@@ -16,6 +16,7 @@ class Player(models.Model):
 	Phone = models.CharField(max_length=20)
 	Mail = models.EmailField()
 	Photo = models.ImageField()
+	LicenceId = models.ManyToOne(LicenceId)
 
 class LicenceType(models.Model):
 	
@@ -23,8 +24,14 @@ class LicenceType(models.Model):
 	Price = models.DecimalField(max_digits=5,decimal_places=2)
 	Active = models.BooleanField(default=True)
 	
+class CalendarType(models.Model):
+	StartDate = model.DateField()
+	EndDate = model.DateField();
 	
 class ValidFor(models.Model):
 	Player = models.ForeignKey(Player)
-	Season = models.ForeignKey(Season)
+	Duration = models.ForeignKey(CalendarType)
 	Team = models.ForeignKey(Team)
+
+class LicenceId(models.Model):
+	LicenceId = models.CharField(man_length=25)

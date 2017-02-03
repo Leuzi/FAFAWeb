@@ -14,4 +14,4 @@ class RegionManager():
 	
 	def getRegionByShortname(self,shortname):
 		
-		return models.Region.objects.get(ShortRegionName=shortname)		
+		return models.Region.objects.get(ShortRegionName=shortname)
