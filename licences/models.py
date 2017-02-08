@@ -2,6 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 from seasons.models import Season
 from teams.models import Team
+from regions.models import Region
 
 class Player(models.Model):
 	
@@ -21,17 +22,28 @@ class Player(models.Model):
 class LicenceType(models.Model):
 	
 	Name = models.CharField(max_length=50)
-	Price = models.DecimalField(max_digits=5,decimal_places=2)
 	Active = models.BooleanField(default=True)
+	Shortening = models.CharField(max_length=4)
+	Region = models.ForeignKey(Region)
 	
-class CalendarType(models.Model):
+class States(models.Model):
+	Name = models.CharField(max_length=20)
+	Shortening = models.CharField(man_length=6)
+	
+class LicenceDuration(models.Model):
 	StartDate = model.DateField()
-	EndDate = model.DateField();
+	EndDate = model.DateField()
+	Price = models.DecimalField(max_digits=5,decimal_places=2)
+	
+class LicenceSesion(models.Model):
+	Licence = models.ForeignKey(LicenceType)
+	Duration = models.ForeignKey(LicenceDuration)
 	
 class ValidFor(models.Model):
 	Player = models.ForeignKey(Player)
-	Duration = models.ForeignKey(CalendarType)
+	Licence = models.ForeignKey(LicenceSesion)
 	Team = models.ForeignKey(Team)
+	State = models.ForeignKey(States)
 
 class LicenceId(models.Model):
 	LicenceId = models.CharField(man_length=25)
