@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 	 'teams',
 	 'licences',
 	 'regions',
-	 'colorful',
+	 'players',
+	 'colorfield',
 ]
 
 MIDDLEWARE_CLASSES = [

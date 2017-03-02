@@ -3,6 +3,7 @@ from django_countries.fields import CountryField
 from seasons.models import Season
 from teams.models import Team
 from regions.models import Region
+from players.models import Player
 
 class LicenceType(models.Model):
 	

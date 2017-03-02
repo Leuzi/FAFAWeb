@@ -9,6 +9,6 @@ class Region(models.Model):
 	ShortRegionName = models.CharField(max_length=3)
 	FederationName = models.CharField(max_length=50)
 	ShortFederationName = models.CharField(max_length=6)
-	Flag = models.ImageField(blank=True)
-	FederationLogo = models.ImageField(blank=True)
+	Flag = models.ImageField(blank=True,upload_to='.')
+	FederationLogo = models.ImageField(blank=True, upload_to='.')
 	User = models.OneToOneField(User)

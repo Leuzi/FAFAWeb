@@ -1,5 +1,5 @@
 from django.db import models
-
+from django_countries.fields import CountryField
 # Create your models here.
 
 class Player(models.Model):
@@ -14,7 +14,7 @@ class Player(models.Model):
 	Region = models.CharField(max_length=20)
 	Phone = models.CharField(max_length=20)
 	Mail = models.EmailField()
-	Photo = models.ImageField()
+	Photo = models.ImageField(upload_to='.')
 
 class LicenceId(models.Model):
 	LicenceId = models.CharField(max_length=25)

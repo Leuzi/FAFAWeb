@@ -1,5 +1,5 @@
 from django.db import models
-from colorful.fields import RGBColorField
+from colorfield.fields import ColorField
 from seasons.models import Season
 
 class Team(models.Model):
@@ -35,22 +35,22 @@ class Stadium(models.Model):
 
 class Uniform(models.Model):
 	JerseyColor = models.CharField(max_length=25)
-	JerseyColorRGB = RGBColorField()
+	JerseyColorRGB = ColorField()
 	PantsColor = models.CharField(max_length=25)
-	PantsColorRGB = RGBColorField()
+	PantsColorRGB = ColorField()
 	HelmetColor = models.CharField(max_length=25)
-	HelmetColorRGB = RGBColorField()
+	HelmetColorRGB = ColorField()
 	FaceMaskColor = models.CharField(max_length=25)
-	FaceMaskColorRGB = RGBColorField()
+	FaceMaskColorRGB = ColorField()
 	SocksColor = models.CharField(max_length=25)
-	SocksColorRGB = RGBColorField()
+	SocksColorRGB = ColorField()
 	Team = models.ForeignKey(Team,related_name='uniform_of')	
 
 	def __str__(self):
 		return self.JerseyColor+'/'+self.PantsColor
 
 class Logo(models.Model):
-	image = models.ImageField()
+	image = models.ImageField(upload_to='.')
 	belongs_to = models.ForeignKey(Team)
 
 	def __str__(self):
