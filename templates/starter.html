@@ -192,10 +192,10 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">Secciones</li>
         <!-- Optionally, you can add icons to the links -->		
-        <li><a href="#"><i class="fa fa-hospital-o"></i> <span>Gestión Licencias</span></a></li>	
-        <li><a href="#"><i class="fa fa-trophy"></i> <span>Gestión Competiciones</span></a></li>		
+        <li><a href="#"><i class="fa fa-link"></i> <span>Gestión Licencias</span></a></li>	
+        <li><a href="#"><i class="fa fa-link"></i> <span>Gestión Competiciones</span></a></li>		
         <li><a href="#"><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
-        <li><a href="#"><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
+        <li><a href="#"><i class="fa fa-list-alt"></i> <span>Rosters</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -215,7 +215,7 @@ desired effect
     <!-- Main content -->
     <section class="content">	  	
       <!-- Your Page Content Here -->
-		<div class="col-lg-6 col-xs-6">
+		<div class="col-lg-3 col-xs-6">
 		  <!-- small box -->
 		  <div class="small-box bg-green">
 				<div class="inner">
@@ -224,47 +224,20 @@ desired effect
 				  <p>{{Numero}} tipos</p>
 				</div>
 				<div class="icon">
-				  <i class="fa fa-hospital-o"></i>
+				  <i class="ion ion-person-add"></i>
 				</div>
-				<div class="box box-success box-solid collapsed-box">
+				<div class="box box-success box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Más detalles</h3>
 
 					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 						</button>
 					  </div>
 					  <!-- /.box-tools -->
 					</div>
 				<!-- /.box-header -->
-				<div class="box-body">
-				  The body of the box
-				</div>
-				<!-- /.box-body -->
-			  </div>
-		  </div>
-		  
-		  <div class="small-box bg-yellow">
-				<div class="inner">
-				  <h3>Competiciones</h3>
-
-				  <p>{{}} competiciones activas</p>
-				</div>
-				<div class="icon">
-				  <i class="fa fa-trophy"></i>
-				</div>
-				<div class="box box-warning box-solid collapsed-box">
-					<div class="box-header with-border">
-					  <h3 class="box-title">Más detalles</h3>
-
-					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-						</button>
-					  </div>
-					  <!-- /.box-tools -->
-					</div>
-				<!-- /.box-header -->
-				<div class="box-body">
+				<div class="box-body" style="display: block;">
 				  The body of the box
 				</div>
 				<!-- /.box-body -->
@@ -272,7 +245,37 @@ desired effect
 		  </div>
 		</div>		
 		
-		<div class="col-lg-6 col-xs-6">
+		<div class="col-lg-3 col-xs-6">
+		  <!-- small box -->
+		  <div class="small-box bg-yellow">
+				<div class="inner">
+				  <h3>Competiciones</h3>
+
+				  <p>{{}} competiciones activas</p>
+				</div>
+				<div class="icon">
+				  <i class="ion ion-person-add"></i>
+				</div>
+				<div class="box box-warning box-solid">
+					<div class="box-header with-border">
+					  <h3 class="box-title">Más detalles</h3>
+
+					  <div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+						</button>
+					  </div>
+					  <!-- /.box-tools -->
+					</div>
+				<!-- /.box-header -->
+				<div class="box-body" style="display: block;">
+				  The body of the box
+				</div>
+				<!-- /.box-body -->
+			  </div>
+		  </div>
+		</div>	
+		
+		<div class="col-lg-3 col-xs-6">
 		  <!-- small box -->
 		  <div class="small-box bg-aqua">
 				<div class="inner">
@@ -281,40 +284,44 @@ desired effect
 				  <p>{{}}jugadores activos</p>
 				</div>
 				<div class="icon">
-				  <i class="fa fa-users"></i>
+				  <i class="ion ion-person-add"></i>
 				</div>
-				<div class="box box-info box-solid collapsed-box">
+				<div class="box box-info box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Más detalles</h3>
 
 					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 						</button>
 					  </div>
 					  <!-- /.box-tools -->
 					</div>
 				<!-- /.box-header -->
-				<div class="box-body">
+				<div class="box-body" style="display: block;">
 				  The body of the box
 				</div>
 				<!-- /.box-body -->
 			  </div>
 		  </div>
+		</div>	
+	
+		<div class="col-lg-3 col-xs-6">
+		  <!-- small box -->
 		  <div class="small-box bg-red">
 				<div class="inner">
-				  <h3>Rosters</h3>
+				  <h3>Roster</h3>
 
 				  <p>Rosters disponibles</p>
 				</div>
 				<div class="icon">
-				  <i class="fa fa-file-text-o"></i>
+				  <i class="ion ion-person-add"></i>
 				</div>
-				<div class="box box-danger box-solid collapsed-box">
+				<div class="box box-danger box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Más detalles</h3>
 
 					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 						</button>
 					  </div>
 					  <!-- /.box-tools -->
@@ -327,7 +334,6 @@ desired effect
 			  </div>
 		  </div>
 		</div>	
-
 	
     </section>
     <!-- /.content -->

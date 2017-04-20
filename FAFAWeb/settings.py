@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	 'django_extensions',
 	 'django_countries',
+	 'colorfield',
 	 'seasons',
-	 'news',
 	 'teams',
 	 'licences',
 	 'regions',
 	 'players',
-	 'colorfield',
+	 'permissions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -64,7 +64,7 @@ ROOT_URLCONF = 'FAFAWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

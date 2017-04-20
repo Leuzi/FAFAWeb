@@ -17,9 +17,11 @@ from django.conf.urls import url,include
 from django.contrib import admin
 import news.urls
 import teams.urls
+import home.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	 url(r'^news/', include(news.urls)),
-	 url(r'^teams/', include(teams.urls)),
+	url(r'^news/', include(news.urls)),
+	url(r'^teams/', include(teams.urls)),
+	url(r'^',include(home.urls))
 ]

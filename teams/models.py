@@ -1,6 +1,8 @@
 from django.db import models
 from colorfield.fields import ColorField
 from seasons.models import Season
+from django.contrib.auth.models import User
+
 
 class Team(models.Model):
 	
@@ -16,6 +18,7 @@ class Team(models.Model):
 	Instagram = models.CharField(max_length=15,blank=True)
 	Youtube = models.URLField(max_length=50,blank=True)
 	Active = models.BooleanField(default=True)
+	User = models.OneToOneField(User)
 
 	def __str__(self):
 		return self.Name
