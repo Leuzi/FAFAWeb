@@ -1,4 +1,4 @@
-from models import Team
+from teams.models import Team
 from FAFAWeb.constants import *
 from django.contrib.auth import authenticate,login
 

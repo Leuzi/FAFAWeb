@@ -1,4 +1,4 @@
-from models import Region
+from regions.models import Region
 from FAFAWeb.constants import *
 from django.contrib.auth import authenticate
 

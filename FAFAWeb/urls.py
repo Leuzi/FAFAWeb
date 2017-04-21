@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 import news.urls
 import teams.urls
 import home.urls
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin', admin.site.urls),
 	url(r'^news/', include(news.urls)),
 	url(r'^teams/', include(teams.urls)),
 	url(r'^',include(home.urls))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

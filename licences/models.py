@@ -27,6 +27,6 @@ class LicenceSesion(models.Model):
 	
 class ValidFor(models.Model):
 	Player = models.ForeignKey(Player)
-	Licence = models.ForeignKey(LicenceSesion)
+	Duration = models.ForeignKey(LicenceSesion)
 	Team = models.ForeignKey(Team)
 	State = models.ForeignKey(States)
