@@ -33,19 +33,6 @@ def home(request):
 			
 def landingPage(request, user):	
 	
-	if user.class_name() == "Region":
-		return landingPageRegion(request,user)
-	else:
-		return landingPageTeam(request,user)
-
-def landingPageTeam(request, team):
-	headerDto = TeamManager.getTeamDto(team).getDto()
-	print(headerDto)
-	#players = PlayerManager.getCurrentPlayers(team)
-	#dto = LandingPageDto(players)
-	return render(request, 'index.html', {'headerDto' : headerDto})
+	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 	
-def landingPageRegion(request, region):
-		#players = PlayerManager.getCurrentPlayers(team)
-	#dto = LandingPageDto(players)
-	return render(request, 'index.html', {})
+	return render(request, 'index.html', {'headerDto' : headerDto})

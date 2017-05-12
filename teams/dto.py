@@ -6,6 +6,7 @@ class TeamDto:
 		self.TeamName = team.Name
 		self.UserName = team.User.username
 		self.Region = team.Region.RegionName
+		self.Type = "Team"
 		
 	
 	def getDto(self):
@@ -14,4 +15,5 @@ class TeamDto:
 		context['Name'] = self.TeamName
 		context['UserName'] = self.UserName
 		context['Region'] = self.Region
+		context['Type'] = self.Type
 		return context

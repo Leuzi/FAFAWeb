@@ -1,8 +1,22 @@
 from regions.models import Region
 from FAFAWeb.constants import *
 from django.contrib.auth import authenticate
+from regions.dto import RegionDto
 
 class RegionManager():
+
+	@classmethod
+	def getRegionDto(self,region):
+		return RegionDto(region)
+
+	@classmethod
+	def getUserForRegion(self,user):
+		try:
+			userRegion = Region.objects.get(User=user)
+		except:
+			userRegion = None
+			
+		return userRegion
 
 	@classmethod
 	def getResponsible(self,user,password):

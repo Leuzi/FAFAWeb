@@ -6,6 +6,10 @@ from django.contrib.auth import authenticate,login
 class TeamManager():
 
 	@classmethod
+	def getUserForTeam(self,user):
+		return Team.objects.get(User=user)
+
+	@classmethod
 	def getResponsible(self,username,password):
 		user = authenticate(username=username, password=password)
 		responsible = None		

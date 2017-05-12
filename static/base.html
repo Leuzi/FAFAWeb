@@ -13,21 +13,31 @@
             {% block title %}{% trans "" %}{% endblock %}
         </title>
         {% block stylesheets %}
+		{% load static %}
 		  <!-- Bootstrap 3.3.6 -->
-		  <link rel="stylesheet" type="text/css"  href="static/bootstrap/css/bootstrap.min.css">
+		  <link rel="stylesheet" type="text/css"  href="{% static  'bootstrap/css/bootstrap.min.css' %}">
 		  <!-- Font Awesome -->
 		  <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 		  <!-- Ionicons -->
 		  <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 		  <!-- Theme style -->
-		  <link rel="stylesheet" type="text/css"  href="static/dist/css/AdminLTE.min.css">
+		  <link rel="stylesheet" type="text/css"  href="{% static 'dist/css/AdminLTE.min.css' %}">
 		  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
 				page. However, you can choose any other skin. Make sure you
 				apply the skin class to the body tag so the changes take effect.
 		  -->
-		  <link rel="stylesheet" type="text/css"  href="static/dist/css/skins/skin-blue.min.css">
+		  <link rel="stylesheet" type="text/css"  href="{% static 'dist/css/skins/skin-blue.min.css' %}">
         {% endblock %}
-        {% block extra_head %}{% endblock %}
+        {% block extra_head %}
+			{% load static %}
+			<script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+			<!-- Bootstrap 3.3.6 -->
+			<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+			<!-- AdminLTE App -->
+			<script src="{% static 'dist/js/app.min.js' %}"></script>
+			<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+			<script src="{% static 'plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+		{% endblock %}
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
 		<div class="wrapper">
@@ -36,7 +46,7 @@
 		  <header class="main-header">
 
 			<!-- Logo -->
-			<a href="index2.html" class="logo">
+			<a href="/" class="logo">
 			  <!-- mini logo for sidebar mini 50x50 pixels -->
 			  <span class="logo-mini"><b>{{headerDto.ShortName}}</b></span>
 			  <!-- logo for regular state and mobile devices -->
@@ -172,9 +182,11 @@
 			  <ul class="sidebar-menu">
 				<li class="header">Secciones</li>
 				<!-- Optionally, you can add icons to the links -->		
+				{% if headerDto.Type != "Team" %}
 				<li><a href="#"><i class="fa fa-link"></i> <span>Gestión Licencias</span></a></li>	
 				<li><a href="#"><i class="fa fa-link"></i> <span>Gestión Competiciones</span></a></li>		
-				<li><a href="#"><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+				{% endif %}
+				<li><a href={%url "playerList" %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
 				<li><a href="#"><i class="fa fa-list-alt"></i> <span>Rosters</span></a></li>
 			  </ul>
 			  <!-- /.sidebar-menu -->

@@ -3,77 +3,81 @@
 {% block content %}
 <section class="content">	
 <!-- Your Page Content Here -->
-	<div class="col-lg-3 col-xs-6">
-		  <!-- small box -->
-		  <div class="small-box bg-green">
-				<div class="inner">
-				  <h3>Licencias</h3>
 
-				  <p>{{Numero}} tipos</p>
-				</div>
-				<div class="icon">
-				  <i class="ion ion-person-add"></i>
-				</div>
-				<div class="box box-success box-solid">
-					<div class="box-header with-border">
-					  <h3 class="box-title">Más detalles</h3>
-
-					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-						</button>
-					  </div>
-					  <!-- /.box-tools -->
-					</div>
-				<!-- /.box-header -->
-				<div class="box-body" style="display: block;">
-				  The body of the box
-				</div>
-				<!-- /.box-body -->
-			  </div>
-		  </div>
-		</div>		
-		
-		<div class="col-lg-3 col-xs-6">
-		  <!-- small box -->
-		  <div class="small-box bg-yellow">
-				<div class="inner">
-				  <h3>Competiciones</h3>
-
-				  <p>0 competiciones activas</p>
-				</div>
-				<div class="icon">
-				  <i class="ion ion-person-add"></i>
-				</div>
-				<div class="box box-warning box-solid">
-					<div class="box-header with-border">
-					  <h3 class="box-title">Más detalles</h3>
-
-					  <div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-						</button>
-					  </div>
-					  <!-- /.box-tools -->
-					</div>
-				<!-- /.box-header -->
-				<div class="box-body" style="display: block;">
-				  The body of the box
-				</div>
-				<!-- /.box-body -->
-			  </div>
-		  </div>
-		</div>	
-	
-
+{% if headerDto.Type != "Team" %}
 	<div class="col-lg-3 col-xs-6">
 	  <!-- small box -->
-	  <div class="small-box bg-aqua">
+	  <div class="small-box bg-green">
 			<div class="inner">
-			  <h3>Jugadores</h3>
+			  <h3>Licencias</h3>
 
-			  <p>0 jugadores activos</p>
+			  <p>{{Numero}} tipos</p>
 			</div>
 			<div class="icon">
 			  <i class="ion ion-person-add"></i>
+			</div>
+			<div class="box box-success box-solid">
+				<div class="box-header with-border">
+				  <h3 class="box-title">Más detalles</h3>
+
+				  <div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					</button>
+				  </div>
+				  <!-- /.box-tools -->
+				</div>
+			<!-- /.box-header -->
+			<div class="box-body" style="display: block;">
+			  The body of the box
+			</div>
+			<!-- /.box-body -->
+		  </div>
+	  </div>
+	</div>		
+	
+	<div class="col-lg-3 col-xs-6">
+	  <!-- small box -->
+	  <div class="small-box bg-yellow">
+			<div class="inner">
+			  <h3>Competiciones</h3>
+
+			  <p>0 competiciones activas</p>
+			</div>
+			<div class="icon">
+			  <i class="ion ion-person-add"></i>
+			</div>
+			<div class="box box-warning box-solid">
+				<div class="box-header with-border">
+				  <h3 class="box-title">Más detalles</h3>
+
+				  <div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					</button>
+				  </div>
+				  <!-- /.box-tools -->
+				</div>
+			<!-- /.box-header -->
+			<div class="box-body" style="display: block;">
+			  The body of the box
+			</div>
+			<!-- /.box-body -->
+		  </div>
+	  </div>
+	</div>	
+	{% endif %}
+	
+	<div class="col-lg-3 col-xs-6">
+	  <!-- small box -->
+	  <div class="small-box bg-aqua">
+			<div class="inner" >
+				<a href={%url "playerList" %}>
+				  <h3>Jugadores</h3>
+
+				  <p>0 jugadores activos</p>
+					<div class="icon">
+					  <i class="ion ion-person-add"></i>
+					</div>
+				</a>
 			</div>
 			<div class="box box-info box-solid">
 				<div class="box-header with-border">
