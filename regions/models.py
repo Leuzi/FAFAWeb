@@ -16,3 +16,6 @@ class Region(models.Model):
 
 	def __unicode__(self):
 		return self.RegionName + '(login:' + self.User.username+ ')'
+
+	def class_name(self):
+		return self.__class__.__name__

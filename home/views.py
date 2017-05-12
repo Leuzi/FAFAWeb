@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth import login
 from permissions.managers import PermissionsManager
 from players.managers import PlayerManager
+from teams.managers import TeamManager
 from home.dto import LandingPageDto
 
 # Create your views here.
@@ -18,7 +19,7 @@ def home(request):
 
 		if user:
 			login(request, user.User)
-			return landingPageTeam(request,user)
+			return landingPage(request,user)
 
 		else:
 			return render(request, 'login.html')
@@ -30,10 +31,21 @@ def home(request):
 			return render(request, 'login.html')
 
 			
-def landingPageTeam(request, team):	
-	players = PlayerManager.getCurrentPlayers(team)
-	dto = LandingPageDto(players)
-	return render(request, 'login.html', {dto : dto})
+def landingPage(request, user):	
+	
+	if user.class_name() == "Region":
+		return landingPageRegion(request,user)
+	else:
+		return landingPageTeam(request,user)
+
+def landingPageTeam(request, team):
+	headerDto = TeamManager.getTeamDto(team).getDto()
+	print(headerDto)
+	#players = PlayerManager.getCurrentPlayers(team)
+	#dto = LandingPageDto(players)
+	return render(request, 'index.html', {'headerDto' : headerDto})
 	
 def landingPageRegion(request, region):
-	pass
+		#players = PlayerManager.getCurrentPlayers(team)
+	#dto = LandingPageDto(players)
+	return render(request, 'index.html', {})

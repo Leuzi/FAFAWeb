@@ -7,10 +7,10 @@ from teams.managers import TeamManager
 class PermissionsManager():
 
 	@classmethod
-	def getPermissions(self,user, password):
-		user = RegionManager.getResponsible(user,password)
+	def getPermissions(self,username, password):
+		user = RegionManager.getResponsible(username,password)
+		
 		if user is None:
-			user = TeamManager.getResponsible(user,password)
-
+			user = TeamManager.getResponsible(username,password)
 
 		return user

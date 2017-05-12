@@ -1,18 +1,22 @@
 from teams.models import Team
+from teams.dto import TeamDto
 from FAFAWeb.constants import *
 from django.contrib.auth import authenticate,login
 
 class TeamManager():
 
 	@classmethod
-	def getResponsible(self,user,password):
-		user = authenticate(username=user, password=password)
-		print(user)
+	def getResponsible(self,username,password):
+		user = authenticate(username=username, password=password)
 		responsible = None		
 		if user is not None:
 			responsible = Team.objects.get(User=user)
 		
 		return responsible
+
+	@classmethod
+	def getTeamDto(self,team):
+		return TeamDto(team)
 
 	@classmethod
 	def get_teams(self,SEASON=CSEASON):

@@ -1,6 +1,7 @@
 from django.db import models
 from colorfield.fields import ColorField
 from seasons.models import Season
+from regions.models import Region
 from django.contrib.auth.models import User
 
 
@@ -19,9 +20,13 @@ class Team(models.Model):
 	Youtube = models.URLField(max_length=50,blank=True)
 	Active = models.BooleanField(default=True)
 	User = models.OneToOneField(User)
+	Region = models.ForeignKey(Region)
 
 	def __str__(self):
 		return self.Name
+
+	def class_name(self):
+		return self.__class__.__name__
 
 	class Meta:
 		ordering = ['Name']
