@@ -2,6 +2,8 @@
 
 {% block content %}   
 <section class="content">	  	
+<a class="btn btn-app" href={%url "newPlayer" %}>Nuevo Jugador</a>
+
 <div class="small-box bg-aqua">
 	<div class="inner" >
 		<a href={%url "playerList" %}>
@@ -25,38 +27,36 @@
 		</div>
 	<!-- /.box-header -->
 	<div class="box-body sidebar-collapse">
-		<div class="box-body">
-			<table id="playerList" class="display" cellspacing="0" width="100%">
-			<thead>
-				<tr>
-					<th>Estado<th>
-					<th>No.Licencia<th>
-					<th>Nombre<th>
-					<th>Solicitud<th>
-					<th>Alta<th>
-					<th>Tipo<th>
-					<th>Precio<th>
-					<th>Hom <th>
-					<th>Precio<th>
-					<th>Total<th>
-				</tr>
-			</thead>
-			<tbody>
+		<table id="playerList" class="display" cellspacing="0" width="100%">
+		<thead>
 			<tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-				<td>2011/04/25</td>
-                <td>$320,800</td>
-				<td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-			</tbody>
-			</table>
-		</div>
+				<th>Estado<th>
+				<th>No.Licencia<th>
+				<th>Nombre<th>
+				<th>Solicitud<th>
+				<th>Alta<th>
+				<th>Tipo<th>
+				<th>Precio<th>
+				<th>Hom <th>
+				<th>Precio<th>
+				<th>Total<th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>Tiger Nixon</td>
+			<td>System Architect</td>
+			<td>Edinburgh</td>
+			<td>61</td>
+			<td>2011/04/25</td>
+			<td>$320,800</td>
+			<td>2011/04/25</td>
+			<td>$320,800</td>
+			<td>2011/04/25</td>
+			<td>$320,800</td>
+		</tr>
+		</tbody>
+		</table>
 	</div>
 	<!-- /.box-body -->
 	

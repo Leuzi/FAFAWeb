@@ -14,7 +14,7 @@ class Region(models.Model):
 	User = models.OneToOneField(User)
 	National = models.BooleanField(default=True)
 
-	def __unicode__(self):
+	def __str__ (self):
 		return self.RegionName + '(login:' + self.User.username+ ')'
 
 	def class_name(self):

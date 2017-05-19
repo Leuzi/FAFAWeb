@@ -21,9 +21,11 @@ import news.urls
 import teams.urls
 import home.urls
 import players.urls
+import licences.urls
 
 urlpatterns = [
     url(r'^admin', admin.site.urls),
+	url(r'^licences/', include(licences.urls)),
 	url(r'^news/', include(news.urls)),
 	url(r'^teams/', include(teams.urls)),
 	url(r'^players/', include(players.urls)),

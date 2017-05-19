@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 	 'django_extensions',
 	 'django_countries',
 	 'colorfield',
+	 'crispy_forms',
+	 
 	 'seasons',
 	 'teams',
 	 'licences',

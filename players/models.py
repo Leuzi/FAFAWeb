@@ -15,7 +15,4 @@ class Player(models.Model):
 	Phone = models.CharField(max_length=20)
 	Mail = models.EmailField()
 	Photo = models.ImageField(upload_to='.')
-
-class LicenceId(models.Model):
 	LicenceId = models.CharField(max_length=25)
-	Player = models.ForeignKey(Player)

@@ -1,24 +1,20 @@
 from . import models
 from FAFAWeb.constants import *
+from .dto import LicenceDto
 
-class PlayerManager():
-	@classmethod
-	def get_player(self,dni):
-		player = models.Player.objects.filter(dni=dni)
-		if season == [] :
-			season = None
-		return season
-	
-class LicenceTypeManager():
-	@classmethod
-	def get_licences(self,active=True):
-		licences = models.Licences.objects.filter(Active=active)
-		
 class LicenceManager():
 	@classmethod
-	def getCurrentPlayers(self, team):		
-		licences = models.ValidFor.objects.filter(Team=team)
+	def getAllLicences(self):
+		licences = {}
+		result = models.Licence.objects.all()
 		
+		for licence in result:
+			dto = LicenceDto(licence).getDto()
+			licences[licence.Region].append(dto)
+		
+		print("LICENCES")
+		print(licences)
+		return licences
 		
 	def getValidLicenses(self):
 		pass
