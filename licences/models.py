@@ -8,7 +8,7 @@ from players.models import Player
 class LicenceType(models.Model):	
 	Name = models.CharField(max_length=50)
 	Shortening = models.CharField(max_length=4)
-	Region = models.ForeignKey(Region)	
+	Region = models.ForeignKey(Region)
 	
 	def __str__ (self):
 		return self.Name + '(Región:' + self.Region.RegionName+ ')'
@@ -24,10 +24,11 @@ class LicenceDuration(models.Model):
 	StartDate = models.DateField()
 	EndDate = models.DateField()
 	Price = models.DecimalField(max_digits=5,decimal_places=2)
+	MinimumBirthDate = models.DateField(blank=True)
+	MaximumBirthDate = models.DateField(blank=True)
 	
 	def __str__ (self):
 		return  'Desde: '+ str(self.StartDate) + ' Hasta:' + str(self.EndDate) +'(' + str(self.Price) + '€)'
-	
 	
 class Licence(models.Model):
 	Type = models.ForeignKey(LicenceType)

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 	 'regions',
 	 'players',
 	 'permissions',
+	 'competitions',
 ]
 
 MIDDLEWARE_CLASSES = [

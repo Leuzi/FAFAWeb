@@ -22,12 +22,14 @@ import teams.urls
 import home.urls
 import players.urls
 import licences.urls
+import competitions.urls
 
 urlpatterns = [
-    url(r'^admin', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 	url(r'^licences/', include(licences.urls)),
 	url(r'^news/', include(news.urls)),
 	url(r'^teams/', include(teams.urls)),
 	url(r'^players/', include(players.urls)),
-	url(r'^$',include(home.urls))
+	url(r'^competitions/', include(competitions.urls)),
+	url(r'^$', include(home.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

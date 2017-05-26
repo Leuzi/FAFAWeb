@@ -11,6 +11,7 @@ def list(request):
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 	return render(request, 'playersList.html', {'headerDto' : headerDto})
 	
+@login_required
 def new(request):
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()

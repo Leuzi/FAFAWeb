@@ -183,11 +183,11 @@
 				<li class="header">Secciones</li>
 				<!-- Optionally, you can add icons to the links -->		
 				{% if headerDto.Type != "Team" %}
-				<li><a href="#"><i class="fa fa-link"></i> <span>Gestión Licencias</span></a></li>	
-				<li><a href="#"><i class="fa fa-link"></i> <span>Gestión Competiciones</span></a></li>		
+				<li><a href={%url "licenceList" %}><i class="fa fa-medkit"></i> <span>Gestión Licencias</span></a></li>	
+				<li><a href={%url "competitionList" %}><i class="fa fa-trophy"></i> <span>Gestión Competiciones</span></a></li>		
 				{% endif %}
 				<li><a href={%url "playerList" %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
-				<li><a href="#"><i class="fa fa-list-alt"></i> <span>Rosters</span></a></li>
+				<li><a href="#"><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
 			  </ul>
 			  <!-- /.sidebar-menu -->
 			</section>

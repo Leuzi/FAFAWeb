@@ -9,11 +9,13 @@ class LicenceManager():
 		result = models.Licence.objects.all()
 		
 		for licence in result:
-			dto = LicenceDto(licence).getDto()
-			licences[licence.Region].append(dto)
+			licences[licence.Type.Region.RegionName] = []
 		
-		print("LICENCES")
-		print(licences)
+		for licence in result:
+			dto = LicenceDto(licence).getDto()
+						
+			licences[licence.Type.Region.RegionName].append(dto)
+		
 		return licences
 		
 	def getValidLicenses(self):

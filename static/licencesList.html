@@ -2,23 +2,22 @@
 
 {% block content %}   
 <section class="content">	  	
-<a class="btn btn-app" href={%url "newPlayer" %}>Nuevo Jugador</a>
+<a class="btn btn-app" href={%url "newLicence" %}>Nueva Licencia</a>
 
-{licences}
+{% for name,regionLicences in licences.items %}
 
-<div class="small-box bg-aqua">
+<div class="small-box bg-green">
 	<div class="inner" >
-		<a href={%url "playerList" %}>
-		  <h3>Jugadores</h3>
+		<h3>Licencias en {{name}}</h3>
 
-		  <p>0 jugadores activos</p>
-			<div class="icon">
-			  <i class="ion ion-person-add"></i>
-			</div>
-		</a>
+		<p>Hay {{regionLicences|length}} licencia activa{{regionLicences|length |pluralize:",s"}}<p>
+		  
+		<div class="icon">
+			<i class="ion ion-person-add"></i>
+		</div>
 	</div>
 	<div class="box box-info box-solid">
-		<div class="box-header with-border">
+		<div class="box-heade bg-green with-border">
 		  <h3 class="box-title">Más detalles</h3>
 
 		  <div class="box-tools pull-right" >
@@ -29,38 +28,44 @@
 		</div>
 	<!-- /.box-header -->
 	<div class="box-body sidebar-collapse">
-		<table id="playerList" class="display" cellspacing="0" width="100%">
+		<table id="licence List" class="display" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th>Estado<th>
-				<th>No.Licencia<th>
 				<th>Nombre<th>
-				<th>Solicitud<th>
-				<th>Alta<th>
-				<th>Tipo<th>
+				<th>Tipo<th>				
+				<th>Región<th>
+				<th>Válido desde<th>
+				<th>Válido hasta<th>
 				<th>Precio<th>
-				<th>Hom <th>
-				<th>Precio<th>
-				<th>Total<th>
 			</tr>
 		</thead>
+		{% if regionLicences == 0 %}
+			<p> No hay licencias </p>
+		{% else %}
+			{% for licence in regionLicences %}
+				<td>{{licence.Active}}</td>
+				<td>{{licence.Name}}</td>
+				<td>{{licence.Shortening}}</td>
+				<td>{{licence.Region}}</td>
+				<td>{{licence.StartDate}}</td>
+				<td>{{licence.EndDate}}</td>		
+				<td>{{licence.Price}}€</td>
+			{% endfor %}
+		{% endif %}
 		<tbody>
 		<tr>
-			<td>Tiger Nixon</td>
-			<td>System Architect</td>
-			<td>Edinburgh</td>
-			<td>61</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
+			
+
 		</tr>
 		</tbody>
 		</table>
 	</div>
 	
 </div>
+
+{% endfor  %}
 </section>
+
+
 {% endblock %}

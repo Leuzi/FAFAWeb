@@ -1,8 +1,13 @@
 from django.db import models
 from django_countries.fields import CountryField
-# Create your models here.
 
 class Player(models.Model):
+	MALE = 'H'
+	FEMALE = 'M'
+	GENDERS = (
+		(MALE, 'Hombre'),
+		(FEMALE, 'Mujer')
+	)
 	
 	DNI = models.CharField(max_length=12)
 	Name = models.CharField(max_length=50)
@@ -16,3 +21,7 @@ class Player(models.Model):
 	Mail = models.EmailField()
 	Photo = models.ImageField(upload_to='.')
 	LicenceId = models.CharField(max_length=25)
+	Gender = models.CharField(
+        max_length=1,
+        choices=GENDERS
+    )

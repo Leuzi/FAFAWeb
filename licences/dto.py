@@ -3,13 +3,13 @@
 class LicenceDto:
 	def __init__(self,licence):		
 		
-		self.Name = licence.LicenceType.Name
-		self.Shortening = licence.LicenceType.Shortening
-		self.Region = licence.Region.Name
+		self.Name = licence.Type.Name
+		self.Shortening = licence.Type.Shortening
+		self.Region = licence.Type.Region.RegionName
 		self.StartDate = licence.Session.StartDate
 		self.EndDate = licence.Session.EndDate
-		self.Price = licence.Session.price
-		sele.Active = licence.Active
+		self.Price = licence.Session.Price
+		self.Active = licence.Active
 		
 	
 	def getDto(self):
