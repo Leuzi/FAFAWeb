@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from permissions.managers import PermissionsManager
 from players.managers import PlayerManager
 from teams.managers import TeamManager
@@ -24,13 +24,17 @@ def home(request):
 		else:
 			return render(request, 'login.html')
 	else:
+		user = PermissionsManager.getPermissionsForUser(request.user)
 		print(request.user.is_authenticated)
 		if request.user.is_authenticated:
-			return render(request, 'login.html')
+			return landingPage(request,user)
 		else:
 			return render(request, 'login.html')
 
-			
+def log_out(request):
+	logout(request)
+	return render(request, 'login.html')
+
 def landingPage(request, user):	
 	
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
