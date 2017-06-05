@@ -12,7 +12,7 @@ class Region(models.Model):
 	Flag = models.ImageField(blank=True,upload_to='.')
 	FederationLogo = models.ImageField(blank=True, upload_to='.')
 	User = models.OneToOneField(User)
-	National = models.BooleanField(default=True)
+	National = models.BooleanField(default=False)
 
 	def __str__ (self):
 		return self.RegionName + '(login:' + self.User.username+ ')'

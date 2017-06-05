@@ -5,8 +5,19 @@ from .dto import LicenceDto
 class LicenceManager():
 	@classmethod
 	def getAllLicences(self):
+		return LicenceManager.getLicences()
+		
+	@classmethod
+	def getLicenceRegion(self,Region):
+		return LicenceManager.getLicences(Region)
+		
+	@classmethod
+	def getLicences(self, filter=None):
+		if filter is None:
+			result = models.Licence.objects.all()
+		else:
+			result = models.Licence.objects.filter(Type__Region=filter)
 		licences = {}
-		result = models.Licence.objects.all()
 		
 		for licence in result:
 			licences[licence.Type.Region.RegionName] = []
@@ -17,6 +28,4 @@ class LicenceManager():
 			licences[licence.Type.Region.RegionName].append(dto)
 		
 		return licences
-		
-	def getValidLicenses(self):
-		pass
+	

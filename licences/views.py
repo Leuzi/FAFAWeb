@@ -13,7 +13,7 @@ def list(request):
 		licences = LicenceManager.getAllLicences()
 	
 	else:
-		licences = LicenceManager.getLicenceRegion(user.Region)
+		licences = LicenceManager.getLicenceRegion(user)
 	
 	return render(request, 'licencesList.html', {'headerDto' : headerDto,
 												'licences': licences})

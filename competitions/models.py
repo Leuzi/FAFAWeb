@@ -1,5 +1,6 @@
 from django.db import models
 from regions.models import Region
+from teams.models import Team
 
 class CompetitionType(models.Model):
 	Name = models.CharField(max_length=45)
@@ -17,5 +18,5 @@ class CompetitionConditions(models.Model):
 class Competition(models.Model):
 	Type = models.ForeignKey(CompetitionType)
 	Conditions = models.ForeignKey(CompetitionConditions)
-	Active = models.BooleanField(default=True);
-	
+	Teams = models.ManyToManyField(Team)
+	Active = models.BooleanField(default=False)

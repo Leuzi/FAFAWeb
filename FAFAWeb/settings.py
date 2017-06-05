@@ -38,18 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	 'django_extensions',
-	 'django_countries',
-	 'colorfield',
-	 'crispy_forms',
+	'django_extensions',
+	'django_countries',
+	'colorfield',
+	'crispy_forms',
 	 
-	 'seasons',
-	 'teams',
-	 'licences',
-	 'regions',
-	 'players',
-	 'permissions',
-	 'competitions',
+	'seasons',
+	'teams',
+	'licences',
+	'regions',
+	'players',
+	'permissions',
+	'competitions',
+	'rosters'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -94,6 +95,7 @@ DATABASES = {
     }
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

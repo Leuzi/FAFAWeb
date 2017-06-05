@@ -3,14 +3,12 @@
 {% block content %}   
 <section class="content">	  	
 
+{% load crispy_forms_tags %}
+<form method="post">
 
-<form method="POST">{% csrf_token %}
+{% crispy licenceTypeForm %}
+{% crispy licenceDurationForm %}
 
-{{licenceTypeForm.as_p}}
-
-{{licenceDurationForm.as_p}}
-
-<button type="submit" class="save btn btn-default">Guardar</button>
 </form>
 
 </section>

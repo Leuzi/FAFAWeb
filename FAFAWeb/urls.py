@@ -31,5 +31,5 @@ urlpatterns = [
 	url(r'^teams/', include(teams.urls)),
 	url(r'^players/', include(players.urls)),
 	url(r'^competitions/', include(competitions.urls)),
-	url(r'^$', include(home.urls)),
+	url(r'^', include(home.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -12,12 +12,16 @@ class TeamManager():
 	@classmethod
 	def getResponsible(self,username,password):
 		user = authenticate(username=username, password=password)
-		responsible = None		
-		if user is not None:
-			responsible = Team.objects.get(User=user)
+		responsible = None	
 		
+		if user is not None and user.is_active:
+			try:
+				responsible = Team.objects.get(User=user)
+			except:
+				responsible = None
+				
 		return responsible
-
+		
 	@classmethod
 	def getTeamDto(self,team):
 		return TeamDto(team)

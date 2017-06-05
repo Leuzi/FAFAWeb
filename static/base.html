@@ -27,6 +27,7 @@
 				apply the skin class to the body tag so the changes take effect.
 		  -->
 		  <link rel="stylesheet" type="text/css"  href="{% static 'dist/css/skins/skin-blue.min.css' %}">
+		  <link rel="stylesheet" type="text/css"  href="{% static 'css/custom.css'%}">
         {% endblock %}
         {% block extra_head %}
 			{% load static %}
@@ -146,7 +147,7 @@
 						  <a href=# class="btn btn-default btn-flat">Perfil</a>
 						</div>
 						<div class="pull-right">
-						  <a href={%url "logout" %} class="btn btn-default btn-flat">Salir</a>
+						  <a href={% url "logout" %} class="btn btn-default btn-flat">Salir</a>
 						</div>
 					  </li>
 					</ul>
