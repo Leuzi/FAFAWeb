@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from permissions.managers import PermissionsManager
 from licences.managers import LicenceManager
 from .forms import LicenceTypeForm,LicenceDurationForm
+from .models import Licence
 
 # Create your views here.
 def list(request):
@@ -22,14 +23,24 @@ def new(request):
 	
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
-	
+		
 	if request.method == "POST":
 		licenceTypeForm = LicenceTypeForm(request.POST)
 		licenceDurationForm = LicenceDurationForm(request.POST)
 		
+		print("licenceFormValid")
+		print(licenceTypeForm.is_valid())
+		print("licenceDurationForm")
+		print(licenceDurationForm.is_valid())
+		
 		if licenceTypeForm.is_valid() and licenceDurationForm.is_valid():
-			licenceDurationForm.save()
-			licenceTypeForm.save()
+			duration = licenceDurationForm.save()
+			type = licenceTypeForm.save()
+			
+			licence = Licence(Type=type,Session = duration)
+			licence.save()
+			
+		return redirect(list)
 		
 	else:	
 		licenceTypeForm =  LicenceTypeForm()
@@ -38,3 +49,6 @@ def new(request):
 		return render(request, 'licencesDetail.html', {'headerDto': headerDto,
 													'licenceTypeForm': licenceTypeForm,
 													'licenceDurationForm': licenceDurationForm})
+													
+def editLicence(request,id):
+	pass

@@ -4,11 +4,13 @@
 <section class="content">	  	
 
 {% load crispy_forms_tags %}
-<form method="post">
+<form method="post" action="">
 
 {% crispy licenceTypeForm %}
 {% crispy licenceDurationForm %}
 
+<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
+  
 </form>
 
 </section>

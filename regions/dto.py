@@ -7,7 +7,9 @@ class RegionDto:
 		self.UserName = region.User.username
 		self.RegionName = region.RegionName
 		self.Type = "Region"
-		
+		self.Photo = region.FederationLogo
+		if self.Photo is None:
+			self.Photo = 'default.png'	
 	
 	def getDto(self):
 		context = {}
@@ -16,4 +18,5 @@ class RegionDto:
 		context['UserName'] = self.UserName
 		context['Region'] = self.RegionName
 		context['Type'] = self.Type
+		context['Photo'] = self.Photo
 		return context

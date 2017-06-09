@@ -4,7 +4,7 @@ from permissions.managers import PermissionsManager
 
 # Create your views here.
 @login_required
-def roster(request):
+def rosterList(request):
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 	return render(request, 'rosterList.html', {'headerDto' : headerDto})

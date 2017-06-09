@@ -5,7 +5,5 @@ from teams.models import *
 admin.site.register(Team)
 admin.site.register(Stadium)
 admin.site.register(Uniform)
-admin.site.register(Logo)
 admin.site.register(StadiumSeason)
 admin.site.register(UniformSeason)
-admin.site.register(LogoSeason)

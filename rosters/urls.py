@@ -3,5 +3,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^', views.roster),
+	url(r'^', views.rosterList,name='rosterList'),
 ]

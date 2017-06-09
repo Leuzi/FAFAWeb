@@ -21,6 +21,7 @@ class Team(models.Model):
 	Active = models.BooleanField(default=True)
 	User = models.OneToOneField(User)
 	Region = models.ForeignKey(Region)
+	Logo = models.ImageField(upload_to='.',default='default.png')
 
 	def __str__(self):
 		return self.Name
@@ -57,14 +58,6 @@ class Uniform(models.Model):
 	def __str__(self):
 		return self.JerseyColor+'/'+self.PantsColor
 
-class Logo(models.Model):
-	image = models.ImageField(upload_to='.')
-	belongs_to = models.ForeignKey(Team)
-
-	def __str__(self):
-		return self.Team.name
-
-
 class UniformSeason(models.Model):
 	FirstUniform = models.ForeignKey(Uniform,related_name='firstUniform')
 	SecondUniform = models.ForeignKey(Uniform,related_name='secondUniform',blank=True,null=True)
@@ -75,16 +68,4 @@ class StadiumSeason(models.Model):
 	PracticeField = models.ForeignKey(Stadium,related_name='practiceField')
 	GameField = models.ForeignKey(Stadium,related_name='gameField')
 	Season = models.ForeignKey(Season)
-	Team = models.ForeignKey(Team,related_name='stadium_of')	
-
-class LogoSeason(models.Model):
-	Logo = models.ForeignKey(Logo)
-	Season = models.ManyToManyField(Season)
-	Team = models.ForeignKey(Team,related_name='logo_of')	
-
-
-
-
-
-
-
+	Team = models.ForeignKey(Team,related_name='stadium_of')		

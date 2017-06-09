@@ -10,6 +10,7 @@ class LicenceDto:
 		self.EndDate = licence.Session.EndDate
 		self.Price = licence.Session.Price
 		self.Active = licence.Active
+		self.Id = licence.id
 		
 	
 	def getDto(self):
@@ -21,4 +22,5 @@ class LicenceDto:
 		context['EndDate'] = self.EndDate
 		context['Price'] = self.Price
 		context['Active'] = self.Active
+		context['Id'] = self.Id
 		return context
