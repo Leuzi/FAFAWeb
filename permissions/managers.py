@@ -2,6 +2,7 @@ from . import models
 from FAFAWeb.constants import *
 from regions.managers import RegionManager
 from teams.managers import TeamManager
+from licences.managers import LicenceManager
 
 
 class PermissionsManager():
@@ -33,3 +34,13 @@ class PermissionsManager():
 			headerDto =  TeamManager.getTeamDto(user)
 			
 		return headerDto
+
+	@classmethod
+	def canEditLicence(self,user,region):
+
+		if region is not None and user is not None:
+			if region == user or user.National:
+				return True
+
+		return False
+		

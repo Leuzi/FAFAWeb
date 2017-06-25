@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import  Layout, Fieldset, ButtonHolder,Field
 from django import forms
 from .models import *
 
@@ -17,6 +17,14 @@ class LicenceTypeForm(forms.ModelForm):
 		self.helper.form_method = 'post'
 		self.helper.form_action = 'submit_licence'
 		self.helper.form_tag = False
+		self.helper.layout = Layout(
+            Fieldset(
+                'Tipo de Licencia',
+                'Name',
+                'Shortening',
+                'Region'
+            )
+        )
 		
 	
 class LicenceDurationForm(forms.ModelForm):
@@ -33,3 +41,13 @@ class LicenceDurationForm(forms.ModelForm):
 		self.helper.form_method = 'post'
 		self.helper.form_action = 'submit_licence'
 		self.helper.form_tag = False
+		self.helper.layout = Layout(
+            Fieldset(
+                'Características',
+                Field('StartDate', css_id="datepicker"),
+                'EndDate',
+                'Price',
+                'MinimumBirthDate',
+                'MaximumBirthDate'
+            )
+        )

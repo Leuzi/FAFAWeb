@@ -29,3 +29,10 @@ class LicenceManager():
 		
 		return licences
 	
+
+	@classmethod
+	def getLicenceById(self, licenceId):
+		
+		licence = models.Licence.objects.get(id=licenceId)
+
+		return licence

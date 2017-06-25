@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.shortcuts import render,redirect
 from permissions.managers import PermissionsManager
 from licences.managers import LicenceManager
@@ -28,11 +30,6 @@ def new(request):
 		licenceTypeForm = LicenceTypeForm(request.POST)
 		licenceDurationForm = LicenceDurationForm(request.POST)
 		
-		print("licenceFormValid")
-		print(licenceTypeForm.is_valid())
-		print("licenceDurationForm")
-		print(licenceDurationForm.is_valid())
-		
 		if licenceTypeForm.is_valid() and licenceDurationForm.is_valid():
 			duration = licenceDurationForm.save()
 			type = licenceTypeForm.save()
@@ -50,5 +47,16 @@ def new(request):
 													'licenceTypeForm': licenceTypeForm,
 													'licenceDurationForm': licenceDurationForm})
 													
-def editLicence(request,id):
-	pass
+def editLicence(request,licenceId):
+	user = PermissionsManager.getPermissionsForUser(request.user)
+	region =  LicenceManager.getLicenceById(licenceId).Type.Region
+	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
+
+	if PermissionsManager.canEditLicence(user,region):
+		licence = LicenceManager.getLicenceById(licenceId)
+		licenceDurationForm = LicenceTypeForm(instance=licence.Session)
+		licenceTypeForm = LicenceDurationForm(instance=licence.Type)
+
+		return render(request, 'licencesDetail.html', {'headerDto': headerDto,
+													'licenceTypeForm': licenceTypeForm,
+													'licenceDurationForm': licenceDurationForm})

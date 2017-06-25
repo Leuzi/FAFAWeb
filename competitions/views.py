@@ -8,7 +8,13 @@ from django.contrib.auth.decorators import login_required
 def list(request):
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
-	competitions = CompetitionManager.getAllCompetitions()
+	
+	competitions = {}
+
+	if user.National:
+		competitions = CompetitionManager.getAllCompetitions()
+	else:
+		competitions = CompetitionManager.getCompetitionsRegion(user)
 	
 	return render(request, 'competitionList.html', {'headerDto', headerDto,
 													'competitions', competitions})

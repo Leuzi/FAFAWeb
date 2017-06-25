@@ -1,3 +1,4 @@
+# -*- coding: latin-1 -*-
 from django.db import models
 from django_countries.fields import CountryField
 from seasons.models import Season
