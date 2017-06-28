@@ -1,6 +1,7 @@
 from . import models
 from FAFAWeb.constants import *
 from .dto import CompetitionDto
+from regions.managers import RegionManager
 
 class CompetitionManager():
 
@@ -17,16 +18,18 @@ class CompetitionManager():
 		
 		if filter is None:
 			result = models.Competition.objects.all()
+			regions = RegionManager.getAllRegions()
 		else:
 			result = models.Competition.objects.filter(Type__Region=filter)
+			regions = []
 		competitions = {}
 		
-		for competition in result:
-			competitions[competition.Type.Region.RegionName] = []
+		for region in regions:
+			competitions[region] = []
 		
 		for competition in result:
 			dto = CompetitionDto(competition).getDto()
 						
-			competitions[licence.Type.Region.RegionName].append(dto)
+			competitions[licence.Type.Region].append(dto)
 		
 		return competitions

@@ -33,13 +33,20 @@ class RegionManager():
 		
 	@classmethod
 	def getAllRegions(self):
-		regions = models.Region.all()
+		regions = Region.objects.all()
+		
+		if regions == []:
+			regions = None
+			
+		return regions
+
+
+	@classmethod
+	def getRegionById(self, regionId):
+		regions = Region.objects.get(id=regionId)
 		
 		if regions == []:
 			regions = None
 			
 		return regions
 	
-	def getRegionByShortname(self,shortname):
-		
-		return models.Region.objects.get(ShortRegionName=shortname)

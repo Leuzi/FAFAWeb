@@ -21,13 +21,18 @@ def list(request):
 	return render(request, 'licencesList.html', {'headerDto' : headerDto,
 												'licences': licences})
 	
-def new(request):
-	
+def new(request, regionId):
+
+	user = PermissionsManager.getPermissionsForUser(request.user)
+
+	if not PermissionsManager.canCreateLicence(user,regionId):	
+		return list(request)
+
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 		
 	if request.method == "POST":
-		licenceTypeForm = LicenceTypeForm(request.POST)
+		licenceTypeForm = LicenceTypeForm(request.POST,initial={'Region': user})
 		licenceDurationForm = LicenceDurationForm(request.POST)
 		
 		if licenceTypeForm.is_valid() and licenceDurationForm.is_valid():
@@ -40,7 +45,7 @@ def new(request):
 		return redirect(list)
 		
 	else:	
-		licenceTypeForm =  LicenceTypeForm()
+		licenceTypeForm =  LicenceTypeForm(initial={'Region': user})
 		licenceDurationForm = LicenceDurationForm()
 		
 		return render(request, 'licencesDetail.html', {'headerDto': headerDto,

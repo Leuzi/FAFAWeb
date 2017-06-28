@@ -44,3 +44,14 @@ class PermissionsManager():
 
 		return False
 		
+
+	@classmethod
+	def canCreateLicence(self,user,regionId):
+		
+		region = RegionManager.getRegionById(regionId)
+
+		if region is not None and user is not None:
+			if region == user or user.National:
+				return True
+
+		return False

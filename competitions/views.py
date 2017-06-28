@@ -16,8 +16,8 @@ def list(request):
 	else:
 		competitions = CompetitionManager.getCompetitionsRegion(user)
 	
-	return render(request, 'competitionList.html', {'headerDto', headerDto,
-													'competitions', competitions})
+	return render(request, 'competitionList.html', {'headerDto': headerDto,
+													'competitions': competitions})
 													
 def new(request):
 	pass

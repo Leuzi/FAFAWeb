@@ -4,19 +4,20 @@
 
 <section class="content">
 
-{% for region,licences in licences.items %}	
-	<div class="small-box bg-green">
+
+{% for region,competitions in competitions.items %}	
+	<div class="small-box bg-yellow">
 		<div class="inner">
-			<h3>Licencias en {{region.RegionName}}</h3>
-			<p>Hay {{licences|length}} licencia{{licences|length |pluralize:",s"}}</p>
+			<h3>Competiciones en {{region.RegionName}}</h3>
+			<p>Hay {{competitions|length}} competici{{competitions|length |pluralize:"ón,ones"}}</p>
 		
-			<a type="button" class="btn btn-warning btn-sm" href={%url "newLicence" region.id %}>Nueva Licencia</a>
+			<a type="button" class="btn btn-warning btn-sm" href={%url "newCompetition"%}>Nueva Competición</a>
 		</div>
 		<div class="icon">
-			<i class="fa fa-medkit"></i>
+			<i class="fa fa-trophy"></i>
 		</div>
-		<div class="box box-success box-solid collapsed-box">
-			<div class="box-header with-border">
+		<div class="box  box-solid collapsed-box">
+			<div class="box-header bg-yellow with-border">
 				<h3 class="box-title">Más detalles</h3>
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
