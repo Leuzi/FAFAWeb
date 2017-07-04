@@ -3,11 +3,7 @@ from crispy_forms.layout import  Layout, Fieldset, ButtonHolder,Field
 from django import forms
 from .models import *
 
-class LicenceTypeForm(forms.ModelForm):
-			
-	class Meta:
-		model = LicenceType
-		fields = ['Name', 'Shortening', 'Region']
+class LicenceTypeForm(forms.ModelForm):	
 	
 	def __init__(self, *args, **kwargs):
 		super(LicenceTypeForm, self).__init__(*args, **kwargs)
@@ -21,6 +17,10 @@ class LicenceTypeForm(forms.ModelForm):
                 Field('Region', type="hidden")
             )
         )
+	
+	class Meta:
+		model = LicenceType
+		fields = ['Name', 'Shortening', 'Region']
 		
 	
 class LicenceDurationForm(forms.ModelForm):

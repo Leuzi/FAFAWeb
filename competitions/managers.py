@@ -17,10 +17,10 @@ class CompetitionManager():
 	def getCompetitions(self, filter=None):
 		
 		if filter is None:
-			result = models.Competition.objects.all()
+			result = models.CompetitionType.objects.all()
 			regions = RegionManager.getAllRegions()
 		else:
-			result = models.Competition.objects.filter(Type__Region=filter)
+			result = models.CompetitionType.objects.filter(Type__Region=filter)
 			regions = []
 		competitions = {}
 		
@@ -30,6 +30,6 @@ class CompetitionManager():
 		for competition in result:
 			dto = CompetitionDto(competition).getDto()
 						
-			competitions[licence.Type.Region].append(dto)
+			competitions[competition.Region].append(dto)
 		
 		return competitions

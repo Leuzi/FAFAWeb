@@ -28,7 +28,6 @@ def new(request, regionId):
 	if not PermissionsManager.canCreateLicence(user,regionId):	
 		return list(request)
 
-	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 		
 	if request.method == "POST":
