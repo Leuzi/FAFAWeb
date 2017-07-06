@@ -11,4 +11,4 @@ class CompetitionConditionsForm(forms.ModelForm):
 			
 	class Meta:
 		model = CompetitionConditions
-		fields = ['Edition','Years','StartDate', 'EndDate', 'MinimumBirthDate', 'MaximumBirthDate']
+		fields = ['Edition','StartDate', 'EndDate', 'MinimumBirthDate', 'MaximumBirthDate']

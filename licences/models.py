@@ -10,6 +10,13 @@ class LicenceType(models.Model):
 	Name = models.CharField(max_length=50)
 	Shortening = models.CharField(max_length=4)
 	Region = models.ForeignKey(Region)
+	GENDER_CHOICES = (
+		('H', 'Hombre'),
+		('M', 'Mujer'),
+		('O', 'Open')
+	)
+	
+	Gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O')
 	
 	def __str__ (self):
 		return self.Name + '(Región:' + self.Region.RegionName+ ')'
