@@ -1,20 +1,20 @@
 from . import models
 from FAFAWeb.constants import *
-from .dto import CompetitionDto
+from .dto import CompetitionTypeDto, CompetitionDto
 from regions.managers import RegionManager
 
 class CompetitionManager():
 
 	@classmethod
-	def getAllCompetitions(self):
-		return CompetitionManager.getCompetitions()
+	def getAllCompetitionTypes(self):
+		return CompetitionManager.getCompetitionsTypes()
 	
 	@classmethod
-	def getCompetitionsRegion(self,Region):
-		return CompetitionManager.getCompetitions(Region)
+	def getCompetitionsTypesRegion(self,Region):
+		return CompetitionManager.getCompetitionsTypes(Region)
 
 	@classmethod
-	def getCompetitions(self, filter=None):
+	def getCompetitionsTypes(self, filter=None):
 		
 		if filter is None:
 			result = models.CompetitionType.objects.all()
@@ -28,8 +28,24 @@ class CompetitionManager():
 			competitions[region] = []
 		
 		for competition in result:
-			dto = CompetitionDto(competition).getDto()
+			dto = CompetitionTypeDto(competition).getDto()
 						
 			competitions[competition.Region].append(dto)
 		
 		return competitions
+		
+	@classmethod
+	def getCompetitionTypeById(self, competitionId):
+	
+		competition = models.CompetitionType.objects.get(id=competitionId)
+
+		return competition
+		
+	@classmethod
+	def getEditions(self, competitionTypeId):
+		
+		competition = CompetitionManager.getCompetitionTypeById(competitionTypeId)	
+		
+		editions =  models.Edition.objects.filter(Competition=competition)
+		
+		return CompetitionDto(competition, editions).getDto()		

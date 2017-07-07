@@ -64,3 +64,5 @@ def editLicence(request,licenceId):
 		return render(request, 'licencesDetail.html', {'headerDto': headerDto,
 													'licenceTypeForm': licenceTypeForm,
 													'licenceDurationForm': licenceDurationForm})
+	
+	return list(request)

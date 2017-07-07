@@ -13,9 +13,9 @@ def list(request):
 	competitions = {}
 
 	if user.National:
-		competitions = CompetitionManager.getAllCompetitions()
+		competitions = CompetitionManager.getAllCompetitionTypes()
 	else:
-		competitions = CompetitionManager.getCompetitionsRegion(user)
+		competitions = CompetitionManager.getCompetitionsTypesRegion(user)
 	
 	return render(request, 'competitionList.html', {'headerDto': headerDto,
 													'competitions': competitions})
@@ -35,7 +35,8 @@ def new(request, regionId):
 			form.save()
 			return list(request)
 		else:
-			pass
+			return render(request, 'competitionsDetail.html', {'headerDto': headerDto,
+															'competitionTypeForm': form})
 
 	else:
 		competitionTypeForm = CompetitionTypeForm(initial={'Region': user})
@@ -43,7 +44,38 @@ def new(request, regionId):
 		return render(request, 'competitionsDetail.html', {'headerDto': headerDto,
 														'competitionTypeForm': competitionTypeForm})
 
-def editCompetition(request, competitionId):
-	
+def editCompetition(request, competitionId):	
 	user = PermissionsManager.getPermissionsForUser(request.user)
-	region = CompetitionManager.getLicenceById(licenceId).Type.Region
+	competition = CompetitionManager.getCompetitionTypeById(competitionId)
+	region = competition.Region
+	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
+	
+	if PermissionsManager.canEditCompetition(user,region.id):
+		if request.method == "POST":
+			form = CompetitionTypeForm(request.POST, instance = competition)
+			if form.is_valid():
+				form.save()
+				return list(request)
+			else:
+				return render(request, 'competitionsDetail.html', {'headerDto': headerDto,
+															'competitionTypeForm': form})
+		
+		else:		
+			competitionTypeForm = CompetitionTypeForm(instance=competition)			
+			return render(request, 'competitionsDetail.html', {'headerDto': headerDto,
+															'competitionTypeForm': competitionTypeForm})
+		
+	return redirect('/')
+	
+def manageCompetition(request, competitionId):
+	user = PermissionsManager.getPermissionsForUser(request.user)
+	competition = CompetitionManager.getCompetitionTypeById(competitionId)
+	region = competition.Region
+	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
+	
+	if PermissionsManager.canManageEditions(user, region.id):
+		competition = CompetitionManager.getEditions(competitionId)
+		return render(request, 'competitionManage.html', {'headerDto': headerDto,
+														  'competition': competition})
+	
+	return redirect('/')

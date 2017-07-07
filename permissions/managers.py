@@ -66,3 +66,24 @@ class PermissionsManager():
 				return True
 
 		return False
+		
+	@classmethod
+	def canEditCompetition(self,user,regionId):
+		
+		region = RegionManager.getRegionById(regionId)
+
+		if region is not None and user is not None:
+			if region == user or user.National:
+				return True
+
+		return False
+
+	@classmethod
+	def canManageEditions(self, user, regionId):
+		region = RegionManager.getRegionById(regionId)
+
+		if region is not None and user is not None:
+			if region == user or user.National:
+				return True
+
+		return False

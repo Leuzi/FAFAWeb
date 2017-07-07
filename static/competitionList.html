@@ -32,7 +32,8 @@
 						<tr>
 							<th>Nombre</th>
 							<th>Alias</th>
-							<th>Detalle</th>
+							<th>Edicion</th>
+							<th>Competiones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,6 +45,7 @@
 								<td>{{competition.Name}}</td>
 								<td>{{competition.Shortening}}</td>
 								<td> <a type="button" class="btn btn-block btn-warning btn-sm" href={%url "editCompetition" competition.Id %}>Editar</a> </td>
+								<td> <a type="button" class="btn btn-block btn-success btn-sm" href={%url "manageCompetition" competition.Id %}>Detalles</a> </td>
 							</tr>
 						{% endfor %}
 					{% endif %}

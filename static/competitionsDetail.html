@@ -1,37 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}   
-<section class="content">	  	
-
-<form method="post" action="">
-{% csrf_token %}
-    {{ competitionTypeForm }}
-
-
-<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
-  
-</form>
-
+<section class="content">
+	{% csrf_token %}
+	{% load crispy_forms_tags %}
+	<form method="post" action="">
+		{% crispy competitionTypeForm %}
+		<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
+	</form>
 </section>
-<script>
-$('#id_StartDate').datepicker({
-	format: 'dd/mm/yyyy',
-	language: 'es',
-	autoclose: true,
-	todayHighlight: true
-});
-$('#id_EndDate').datepicker({
-	format: 'dd/mm/yyyy',
-	language: 'es',
-	autoclose: true,
-	todayHighlight: true
-});
-$('#id_MinimumBirthDate').datepicker({
-	format: 'dd/mm/yyyy',
-	language: 'es',
-	autoclose: true,
-	todayHighlight: true
-});
-</script>
-
 {% endblock %}

@@ -7,16 +7,19 @@ class CompetitionType(models.Model):
 	Name = models.CharField(max_length=45)
 	Shortening = models.CharField(max_length=5)
 	Region = models.ForeignKey(Region)
+		
+	class Meta:
+		unique_together = ('Shortening', 'Region')
 	
 	def __str__(self):
 		return self.Name
 	
 class CompetitionConditions(models.Model):
-	Edition = models.CharField(max_length=10)
+	
 	StartDate = models.DateField()
 	EndDate = models.DateField()
 	MinimumBirthDate = models.DateField()
-	MaximumBirthDate = models.DateField()
+	MaximumBirthDate = models.DateField(null=True, blank=True)
 	GENDER_CHOICES = (
 		('H', 'Hombre'),
 		('M', 'Mujer'),
@@ -24,10 +27,15 @@ class CompetitionConditions(models.Model):
 	)
 	
 	Gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O')
-	
-class Competition(models.Model):
-	Type = models.ForeignKey(CompetitionType)
+
+class Edition(models.Model):
+	Edition = models.CharField(max_length=10)
 	Conditions = models.ForeignKey(CompetitionConditions)
 	Teams = models.ManyToManyField(Team)
-	Licences = models.ManyToManyField(Licence)
+	Licences = models.ManyToManyField(Licence)	
+	Competition = models.ForeignKey(CompetitionType)
 	Active = models.BooleanField(default=False)
+
+
+	
+

@@ -5,4 +5,4 @@ from competitions.models import *
 
 admin.site.register(CompetitionType)
 admin.site.register(CompetitionConditions)
-admin.site.register(Competition)
+admin.site.register(Edition)
