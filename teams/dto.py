@@ -17,3 +17,4 @@ class TeamDto:
 		context['Region'] = self.Region
 		context['Type'] = self.Type
 		return context
+

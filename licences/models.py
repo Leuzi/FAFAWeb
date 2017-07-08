@@ -49,7 +49,7 @@ class Licence(models.Model):
 class ValidFor(models.Model):
 	Player = models.ForeignKey(Player)
 	Licence = models.ForeignKey(Licence)
-	Team = models.ForeignKey(Team)	
+	Team = models.ForeignKey(Team)
 	
 class LicenceHistory(models.Model):
 	State = models.ForeignKey(LicenceState)

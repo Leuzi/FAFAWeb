@@ -1,6 +1,7 @@
 from players.models import Player
 from licences.managers import LicenceManager
 from teams.managers import TeamManager
+from .dto import RegionPlayersDto
 
 class PlayerManager():
 
@@ -8,15 +9,22 @@ class PlayerManager():
 	@classmethod
 	def getPlayersForRegion(self,region):
 		teams = TeamManager.getTeamsForRegion(region)
-		print(region)
-		print(teams)
-		teamPlayers = []
+		
+		teamPlayers = {}
 		for team in teams:
-			teamPlayers[team.Name] = LicenceManager.getLicencesForTeam(team)
+			team.players = LicenceManager.getLicencesForTeam(team)
+			teamPlayers[team] = team
+
+		print( RegionPlayersDto(region,teamPlayers).getDto())
+		return RegionPlayersDto(region,teamPlayers)
 		
 
 	@classmethod
 	def getCurrentPlayers(self,team):
 		return LicenceManager.getCurrentPlayers(team)
+
+	@classmethod
+	def getPlayerById(self, playerId):
+		return Player.objects.get(id=playerId)
 
 	

@@ -20,8 +20,8 @@ class CompetitionManager():
 			result = models.CompetitionType.objects.all()
 			regions = RegionManager.getAllRegions()
 		else:
-			result = models.CompetitionType.objects.filter(Type__Region=filter)
-			regions = []
+			result = models.CompetitionType.objects.filter(Region=filter)
+			regions = [filter]
 		competitions = {}
 		
 		for region in regions:

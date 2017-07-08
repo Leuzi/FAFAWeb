@@ -47,3 +47,7 @@ class LicenceManager():
 		today = datetime.now().date()		
 
 		return models.ValidFor.objects.filter(Team=team).filter(Licence__StartDate__lte=today,Licence__EndDate__gte=today)
+
+	@classmethod
+	def getLicencesForTeam(self, team):
+		return models.ValidFor.objects.filter(Team=team)

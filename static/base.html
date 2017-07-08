@@ -196,11 +196,15 @@
 
 				{% if headerDto.Type == "Team" %}
 					<li><a href={%url "playerListTeam" %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+					<li><a href={%url "rosterListTeam" %}><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
 
 				{% else %}
 					<li><a href={%url "playerListRegion" headerDto.Id %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+					<li><a href={%url "rosterListRegion" %}><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
 					
 				{% endif %}
+					
+				
 				<li><a href="#"><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
 			  </ul>
 			  <!-- /.sidebar-menu -->

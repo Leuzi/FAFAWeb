@@ -1,71 +1,113 @@
 {% extends "base.html" %}
 
 {% block content %}   
-<section class="content">	  	
-<h1> Seleccione Región </h1>
-<a class="btn btn-app" href={%url "newPlayer" %}>Nuevo Jugador</a>
+<section class="content">	
 
-<div class="small-box bg-aqua">
-	<div class="inner" >
-		<a href={%url "playerList" %}>
-		  <h3>Jugadores</h3>
+{% if headerDto.National %}  	
+	<h1> Seleccione Región </h1>
 
-		  <p>0 jugadores activos</p>
-			<div class="icon">
-			  <i class="ion ion-person-add"></i>
-			</div>
-		</a>
-	</div>
-	<div class="box box-info box-solid">
-		<div class="box-header with-border">
-		  <h3 class="box-title">Más detalles</h3>
+	<select onchange="javascript:location.href = this.value;">
+		{% for name,region in regions.items %}
+		<option value={%url "playerListRegion" region.Id %}
+			{% if region.Id == playersDto.Id %}
+				selected
+			{% endif %}
+		>{{name}}</option>
+		{% endfor %}
+	</select>
+{% endif %}
 
-		  <div class="box-tools pull-right" >
-			<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-			</button>
-		  </div>
-		  <!-- /.box-tools -->
+<h1> Viendo jugadores de {{playersDto.Name}}</h1>
+
+{% for team in playersDto.Teams %}
+	<div class="small-box bg-aqua">
+		<div class="inner" >
+			<a>
+			  <h3>Jugadores de {{team.Name}} </h3>
+
+			  <p>0 jugadores activos</p>
+				<div class="icon">
+				  <i class="ion ion-person-add"></i>
+				</div>
+			</a>
 		</div>
-	<!-- /.box-header -->
-	<div class="box-body sidebar-collapse">
-		<table id="playerList" class="display" cellspacing="0" width="100%">
-		<thead>
-			<tr>
-				<th>Estado<th>
-				<th>No.Licencia<th>
-				<th>Nombre<th>
-				<th>Solicitud<th>
-				<th>Alta<th>
-				<th>Tipo<th>
-				<th>Precio<th>
-				<th>Hom <th>
-				<th>Precio<th>
-				<th>Total<th>
-			</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td>Tiger Nixon</td>
-			<td>System Architect</td>
-			<td>Edinburgh</td>
-			<td>61</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
-			<td>2011/04/25</td>
-			<td>$320,800</td>
-		</tr>
-		</tbody>
-		</table>
+		<div class="box box-info box-solid collapsed-box">
+			<div class="box-header with-border">
+			  <h3 class="box-title">Más detalles</h3>
+			  <div class="box-tools pull-right" >
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+				</button>
+			  </div>
+			  <!-- /.box-tools -->
+			</div>
+		<!-- /.box-header -->
+		<div class="box-body list-gf sidebar-collapse" style="display: none;">
+			<table id="playerList" class="display" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>Licencia</th>
+						<th>Nombre</th>
+						<th>Fec. Nacimiento</th>
+						<th>Tipo Licencia</th>
+						<th>Estado</th>
+						<th>Precio</th>
+						<th>Detalle jugador</th>
+						<th>Modificar Licencia</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for player in team.Players %}
+					<tr>
+						<td>{{player.Licence}}</td>
+						<td>{{player.Name}} {{player.Surname}}</td>
+						<td>{{player.BirthDate}}</td>
+						<td>{{player.LicenceName}}</td>
+						<td>{{player.State}}</td>
+						<td>{{player.Price}}</td>
+						<td> <a type="button" class="btn btn-block btn-warning btn-sm" data-toggle="modal" data-target="#{{player.Licence}}">Ver ficha</a> </td>								
+						<td>$320,800</td>
+
+						<div class="modal fade" id="{{player.Licence}}" tabindex="-1" role="dialog">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title">Detalle de ficha</h4>
+									</div>
+									<div class="modal-body">
+										<h4>DNI: {{player.DNI}} </h4>
+										<h4>Name: {{player.Name}} </h4>
+										<h4>Surname: {{player.Surname}} </h4>
+										<h4>BirthDate: {{player.BirthDate}} </h4>
+										<h4>Country: {{player.Country}} </h4>
+										<h4>ZIPCode: {{player.ZIPCode}} </h4>
+										<h4>City: {{player.City}} </h4>
+										<h4>Region: {{player.Region}} </h4>
+										<h4>Mail: {{player.Mail}} </h4>
+										<h4>Gender: {{player.Gender}} </h4>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<a type="button" class="btn btn-primary" href={%url "editPlayer" player.Id %}>Modificar</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<!-- /.box-body -->
 	</div>
-	<!-- /.box-body -->
-	
-	<script>
-	$(document).ready(function() {
-		$('#playerList').DataTable();
-	} );
-	</script>
 </div>
+{% endfor %}
 </section>
+
+<script>
+$(document).ready(function() {
+	$('#playerList').DataTable();
+});
+</script>
+
 {% endblock %}

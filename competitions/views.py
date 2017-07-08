@@ -89,12 +89,13 @@ def editConditions(request, competitionId):
 	if PermissionsManager.canEditConditions(user,region.id):
 		
 		formConditions = CompetitionConditionsForm(request.POST or None, instance = competition.Conditions)
-		formLicences = CompetitionLicencesForm(request.POST or None, instance = competition.Licences)
-		formTeams = CompetitionLicencesForm(request.POST or None)
+		formLicences = CompetitionLicencesForm(request.POST or None, region = region)
+		formTeams = CompetitionTeamsForm(request.POST or None, region = region)
 
 		if request.method == "POST":
 			if formConditions.is_valid() and formLicences.is_valid() and formTeams.is_valid():
 				formConditions.save()
+				
 				formLicences.save()
 				formTeams.save()
 

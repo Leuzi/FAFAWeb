@@ -3,5 +3,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^', views.rosterList,name='rosterList'),
+	url(r'^(?P<regionId>(\d+))/$', views.rosterListRegion, name='rosterListRegion'),
+	url(r'^', views.rosterListTeam,name='rosterListTeam'),
 ]

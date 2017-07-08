@@ -64,10 +64,9 @@ class TeamManager():
 		teams = {}
 		
 		for team in teams:
-			teams[team.Name] = getTeamDto(team)
+			teams[team] = getTeamDto(team)
 	
 	@classmethod
 	def getTeamsForRegion(self, region):		
-
 		return Team.objects.filter(Region=region)
 
