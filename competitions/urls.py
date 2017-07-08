@@ -6,4 +6,5 @@ urlpatterns = [
 	url(r'^new/(?P<regionId>(\d+))/$', views.new, name='newCompetition'),
 	url(r'^edit/(?P<competitionId>(\d+))/$', views.editCompetition, name='editCompetition'),
 	url(r'^manage/(?P<competitionId>(\d+))/$', views.manageCompetition, name='manageCompetition'),
+	url(r'^manage/(?P<competitionId>(\d+))/edit/$', views.editConditions, name='editConditions'),
 ]

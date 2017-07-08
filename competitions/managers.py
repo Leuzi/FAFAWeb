@@ -35,11 +35,15 @@ class CompetitionManager():
 		return competitions
 		
 	@classmethod
-	def getCompetitionTypeById(self, competitionId):
+	def getCompetitionTypeById(self, competitionTypeId):
 	
-		competition = models.CompetitionType.objects.get(id=competitionId)
+		competition = models.CompetitionType.objects.get(id=competitionTypeId)
 
 		return competition
+
+	@classmethod
+	def getCompetitionById(self, competitionId):
+		return models.Edition.objects.get(id=competitionId)
 		
 	@classmethod
 	def getEditions(self, competitionTypeId):

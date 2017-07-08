@@ -72,7 +72,11 @@
 	  <!-- small box -->
 	  <div class="small-box bg-aqua">
 			<div class="inner" >
-				<a href={%url "playerList" %}>
+				{% if headerDto.Type == "Team" %}
+					<a href={%url "playerListTeam" %}>
+				{% else %}
+					<a href={%url "playerListRegion" headerDto.Id %}>					
+				{% endif %}
 				  <h3>Jugadores</h3>
 
 				  <p>0 jugadores activos</p>

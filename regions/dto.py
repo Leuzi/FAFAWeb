@@ -2,6 +2,7 @@
 
 class RegionDto:
 	def __init__(self,region):		
+		self.Id = region.id
 		self.ShortFederationName = region.ShortFederationName
 		self.FederationName = region.FederationName
 		self.UserName = region.User.username
@@ -13,6 +14,7 @@ class RegionDto:
 	
 	def getDto(self):
 		context = {}
+		context['Id'] = self.Id
 		context['ShortName'] = self.ShortFederationName
 		context['Name'] = self.FederationName
 		context['UserName'] = self.UserName

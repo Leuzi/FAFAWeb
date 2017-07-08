@@ -46,7 +46,7 @@
 								<td>{{edition.Gender}}</td>
 								<td> <a type="button" class="btn btn-block btn-warning btn-sm" data-toggle="modal" data-target="#teams{{edition.editionId}}">Ver Equipos</a> </td>								
 								<td> <a type="button" class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#licences{{edition.editionId}}">Ver licencias</a> </td>
-								<td> <a type="button" class="btn btn-block btn-success btn-sm">Modificar</a> </td>
+								<td> <a type="button" class="btn btn-block btn-success btn-sm" href={%url "editConditions" competition.Id %}>Modificar</a> </td>
 								
 								<div class="modal fade" id="teams{{edition.editionId}}" tabindex="-1" role="dialog">
 								  <div class="modal-dialog" role="document">

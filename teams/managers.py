@@ -2,6 +2,7 @@ from teams.models import Team
 from teams.dto import TeamDto
 from FAFAWeb.constants import *
 from django.contrib.auth import authenticate,login
+from licences.managers import LicenceManager
 
 class TeamManager():
 
@@ -56,4 +57,17 @@ class TeamManager():
 				category = None
 		
 		return category
+
+	@classmethod
+	def getTeams(self, teams):
+
+		teams = {}
+		
+		for team in teams:
+			teams[team.Name] = getTeamDto(team)
+	
+	@classmethod
+	def getTeamsForRegion(self, region):		
+
+		return Team.objects.filter(Region=region)
 

@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
-	url(r'^$', views.list,name='playerList'),
-	url(r'^new$', views.new, name='newPlayer')
+	url(r'^$', views.listTeam,name='playerListTeam'),
+	url(r'^(?P<regionId>(\d+))/$', views.listRegion, name='playerListRegion'),
+	url(r'^new$', views.new, name='newPlayer'),
 ]

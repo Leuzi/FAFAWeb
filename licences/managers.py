@@ -2,6 +2,7 @@ from . import models
 from FAFAWeb.constants import *
 from .dto import LicenceDto
 from regions.managers import RegionManager
+from datetime import datetime, timedelta, time
 
 class LicenceManager():
 	
@@ -39,6 +40,10 @@ class LicenceManager():
 	@classmethod
 	def getLicenceById(self, licenceId):
 		
-		licence = models.Licence.objects.get(id=licenceId)
+		return models.Licence.objects.get(id=licenceId)
 
-		return licence
+	@classmethod
+	def getActivePlayers(self, team):	
+		today = datetime.now().date()		
+
+		return models.ValidFor.objects.filter(Team=team).filter(Licence__StartDate__lte=today,Licence__EndDate__gte=today)

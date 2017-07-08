@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}   
+<section class="content">	  	
+
+	{% load crispy_forms_tags %}
+		<form method="post" action="">
+
+		{% crispy formConditions %}
+		{% crispy formLicences %}
+		{% crispy formTeams %}
+
+		<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
+	  
+	</form>
+
+</section>
+
+{% endblock %}

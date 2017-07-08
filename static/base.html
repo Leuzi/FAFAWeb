@@ -193,7 +193,14 @@
 				<li><a href={%url "licenceList" %}><i class="fa fa-medkit"></i> <span>Gestión Licencias</span></a></li>	
 				<li><a href={%url "competitionList" %}><i class="fa fa-trophy"></i> <span>Gestión Competiciones</span></a></li>		
 				{% endif %}
-				<li><a href={%url "playerList" %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+
+				{% if headerDto.Type == "Team" %}
+					<li><a href={%url "playerListTeam" %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+
+				{% else %}
+					<li><a href={%url "playerListRegion" headerDto.Id %}><i class="fa fa-users"></i> <span>Gestión Jugadores</span></a></li>
+					
+				{% endif %}
 				<li><a href="#"><i class="fa fa-file-text-o"></i> <span>Rosters</span></a></li>
 			  </ul>
 			  <!-- /.sidebar-menu -->
