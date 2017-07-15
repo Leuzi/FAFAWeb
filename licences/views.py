@@ -10,13 +10,7 @@ from .models import Licence
 def list(request):
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
-	licences = {}
-	
-	if user.National:
-		licences = LicenceManager.getAllLicences()
-	
-	else:
-		licences = LicenceManager.getLicenceRegion(user)
+	licences = LicenceManager.getLicencesForUser(user)
 	
 	return render(request, 'licencesList.html', {'headerDto' : headerDto,
 												'licences': licences})
@@ -29,40 +23,43 @@ def new(request, regionId):
 		return list(request)
 
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
-		
+	licenceTypeForm = LicenceTypeForm(request.POST or None,initial={'Region': user})
+	licenceDurationForm = LicenceDurationForm(request.POST or None)	
+
 	if request.method == "POST":
-		licenceTypeForm = LicenceTypeForm(request.POST,initial={'Region': user})
-		licenceDurationForm = LicenceDurationForm(request.POST)
-		
 		if licenceTypeForm.is_valid() and licenceDurationForm.is_valid():
 			duration = licenceDurationForm.save()
-			type = licenceTypeForm.save()
-			
+			type = licenceTypeForm.save()			
 			licence = Licence(Type=type,Session = duration)
 			licence.save()
-			
-		return redirect(list)
+
+			return redirect(list)
 		
-	else:	
-		licenceTypeForm =  LicenceTypeForm(initial={'Region': user})
-		licenceDurationForm = LicenceDurationForm()
-		
-		return render(request, 'licencesDetail.html', {'headerDto': headerDto,
+	return render(request, 'licencesDetail.html', {'headerDto': headerDto,
 													'licenceTypeForm': licenceTypeForm,
 													'licenceDurationForm': licenceDurationForm})
 													
 def editLicence(request,licenceId):
 	user = PermissionsManager.getPermissionsForUser(request.user)
 	region =  LicenceManager.getLicenceById(licenceId).Type.Region
+
+	if not PermissionsManager.canEditLicence(user,region):
+		return list(request)
+		
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 
-	if PermissionsManager.canEditLicence(user,region):
-		licence = LicenceManager.getLicenceById(licenceId)
-		licenceDurationForm = LicenceTypeForm(instance=licence.Session)
-		licenceTypeForm = LicenceDurationForm(instance=licence.Type)
+	licence = LicenceManager.getLicenceById(licenceId)
+	licenceTypeForm = LicenceTypeForm(request.POST or None, instance = licence.Type)
+	licenceDurationForm = LicenceDurationForm(request.POST or None, instance =  licence.Session)
+	
+	if request.method == "POST":		
+		if licenceTypeForm.is_valid() and licenceDurationForm.is_valid():
+			licenceTypeForm.save()			
+			licenceDurationForm.save()			
+			return list(request)
 
-		return render(request, 'licencesDetail.html', {'headerDto': headerDto,
+	
+	return render(request, 'licencesDetail.html', {'headerDto': headerDto,
 													'licenceTypeForm': licenceTypeForm,
 													'licenceDurationForm': licenceDurationForm})
 	
-	return list(request)

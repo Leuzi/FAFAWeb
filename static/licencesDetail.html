@@ -2,17 +2,15 @@
 
 {% block content %}   
 <section class="content">	  	
+	{% csrf_token %}
+	{% load crispy_forms_tags %}
+	<form method="post" action="">
+		{% crispy licenceTypeForm %}
+		{% crispy licenceDurationForm %}
+		
 
-{% load crispy_forms_tags %}
-<form method="post" action="">
-
-{% crispy licenceTypeForm %}
-{% crispy licenceDurationForm %}
-
-<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
-  
-</form>
-
+		<button class="btn btn-primary" type="submit" value="Submit" name="entry_submit" ><i class="fa fa-lg fa-floppy-o"></i> Save</button>
+	</form>
 </section>
 <script>
 $('#id_StartDate').datepicker({

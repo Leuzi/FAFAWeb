@@ -3,36 +3,20 @@
 {% block content %}   
 <section class="content">	
 
-{% if headerDto.National %}  	
-	<h1> Seleccione Región </h1>
 
-	<select onchange="javascript:location.href = this.value;">
-		{% for name,region in regions.items %}
-		<option value={%url "rosterListRegion" region.Id %}
-			{% if region.Id == playersDto.Id %}
-				selected
-			{% endif %}
-		>{{name}}</option>
-		{% endfor %}
-	</select>
-{% endif %}
-
-<h1> Rosters disponibles para {{competitionsDto.Name}}</h1>
-
-{% for edition in competitionsDto.Editions %}
-	<div class="small-box bg-red">
+{% for team in playersDto.Teams %}
+	<div class="small-box bg-aqua">
 		<div class="inner" >
 			<a>
-			  <h3>{{edition.Name}} </h3>
-
+			  <h3>Jugadores activos de {{team.Name}} </h3>
+			  <a type="button" class="btn btn-warning btn-sm" href={%url "newPlayer" playersDto.Id %}>Nuevo Jugador</a>	
 			  <p>0 jugadores activos</p>
 				<div class="icon">
 				  <i class="ion ion-person-add"></i>
 				</div>
-				<button type="button" class="btn btn-default">Imprimir</button>
 			</a>
 		</div>
-		<div class="box box-info box-solid collapsed-box bg-red">
+		<div class="box box-info box-solid collapsed-box">
 			<div class="box-header with-border">
 			  <h3 class="box-title">Más detalles</h3>
 			  <div class="box-tools pull-right" >
@@ -53,10 +37,11 @@
 						<th>Estado</th>
 						<th>Precio</th>
 						<th>Detalle jugador</th>
+						<th>Modificar Licencia</th>
 					</tr>
 				</thead>
 				<tbody>
-				{% for player in edition.Players %}
+				{% for player in team.Players %}
 					<tr>
 						<td>{{player.Licence}}</td>
 						<td>{{player.Name}} {{player.Surname}}</td>
@@ -64,7 +49,8 @@
 						<td>{{player.LicenceName}}</td>
 						<td>{{player.State}}</td>
 						<td>{{player.Price}}</td>
-						<td> <a type="button" class="btn btn-block btn-warning btn-sm" data-toggle="modal" data-target="#{{player.Licence}}">Ver ficha</a> </td>
+						<td> <a type="button" class="btn btn-block btn-warning btn-sm" data-toggle="modal" data-target="#{{player.Licence}}">Ver ficha</a> </td>								
+						<td>$320,800</td>
 
 						<div class="modal fade" id="{{player.Licence}}" tabindex="-1" role="dialog">
 							<div class="modal-dialog" role="document">
@@ -87,6 +73,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<a type="button" class="btn btn-primary" href={%url "editPlayer" player.Id %}>Modificar</a>
 									</div>
 								</div>
 							</div>

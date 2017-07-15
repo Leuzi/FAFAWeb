@@ -4,6 +4,8 @@ from django.db.models import Q
 from crispy_forms.helper import FormHelper
 from licences.models import Licence
 from teams.models import Team
+
+
 class CompetitionTypeForm(forms.ModelForm):
 			
 	class Meta:
@@ -26,6 +28,18 @@ class CompetitionConditionsForm(forms.ModelForm):
 		
 		self.helper = FormHelper(self)
 		self.helper.form_tag = False
+
+class CompetitionEditionForm(forms.ModelForm):
+	
+	class Meta:
+		model = Edition
+		fields = ['Edition']
+
+	def __init__(self,*args, **kwargs):
+		super(CompetitionEditionForm,self).__init__(*args, **kwargs)
+		self.helper = FormHelper(self)
+		self.helper.form_tag = False
+		
 
 class CompetitionTeamsForm(forms.ModelForm):	
 

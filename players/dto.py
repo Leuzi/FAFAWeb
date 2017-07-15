@@ -1,7 +1,30 @@
 # -*- coding: utf-8 -*-
 
+class TeamPlayersDto:
+	def __init__(self,team):
+		self.Name = team.Name
+		self.Logo = team.Logo
+		self.ActivePlayers = []
+		self.InactivePlayers = []
+
+		for player in team.players:
+			if player.Licence.Active:			
+				self.ActivePlayers.append(PlayerDto(player.Player,player.Licence).getDto())
+			else:
+				self.InactivePlayers.append(PlayerDto(player.Player,player.Licence).getDto())
+		
+	def getDto(self):
+		context = {}
+		context['Name'] = self.Name
+		context['Logo'] = self.Logo
+		context['ActivePlayers'] = self.ActivePlayers
+		context['InactivePlayers'] = self.InactivePlayers
+		return context
+		
+
 class RegionPlayersDto:
-	def __init__(self,region,teams):		
+	def __init__(self,region,teams):
+			
 		self.Id = region.id
 		self.Shortening = region.ShortRegionName
 		self.Name = region.RegionName

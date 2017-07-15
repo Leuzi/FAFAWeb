@@ -9,6 +9,7 @@ class LicenceTypeForm(forms.ModelForm):
 		super(LicenceTypeForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper(self)
 		self.helper.form_tag = False
+		self.helper.form_class = 'form-inline'
 		self.helper.layout = Layout(
             Fieldset(
                 'Tipo de Licencia',
@@ -21,6 +22,10 @@ class LicenceTypeForm(forms.ModelForm):
 	class Meta:
 		model = LicenceType
 		fields = ['Name', 'Shortening', 'Region']
+		labels = {
+			'Name':'Nombre',
+			'Shortening':'Alias'
+		}
 		
 	
 class LicenceDurationForm(forms.ModelForm):
@@ -28,6 +33,13 @@ class LicenceDurationForm(forms.ModelForm):
 	class Meta:
 		model = LicenceDuration
 		fields = ['StartDate', 'EndDate', 'Price', 'MinimumBirthDate', 'MaximumBirthDate']
+		labels = {
+			'StartDate':'Fecha de comienzo',
+			'EndDate':'Fecha de fin',
+			'Price':'Precio',
+			'MinimumBirthDate':'Edad mínima',
+			'MaximumBirthDate':'Edad máxima'
+		}
 		
 	def __init__(self, *args, **kwargs):
 		super(LicenceDurationForm, self).__init__(*args, **kwargs)

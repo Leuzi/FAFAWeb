@@ -6,12 +6,19 @@ from datetime import datetime, timedelta, time
 
 class LicenceManager():
 	
+	@classmethod 
+	def getLicencesForUser(self, user):
+		if user.National:
+			return self.getAllLicences()
+		else:
+			return self.getLicencesForRegion(user)
+
 	@classmethod
 	def getAllLicences(self):
 		return LicenceManager.getLicences()
 		
 	@classmethod
-	def getLicenceRegion(self,Region):
+	def getLicencesForRegion(self,Region):
 		return LicenceManager.getLicences(Region)
 		
 	@classmethod
@@ -33,7 +40,7 @@ class LicenceManager():
 			dto = LicenceDto(licence).getDto()
 						
 			licences[licence.Type.Region].append(dto)
-		
+		print(licences)
 		return licences
 	
 
@@ -41,6 +48,10 @@ class LicenceManager():
 	def getLicenceById(self, licenceId):
 		
 		return models.Licence.objects.get(id=licenceId)
+
+	@classmethod
+	def getLicenceSessionById(self, sessionId):
+		return models.LicenceDuration.objects.get(id=sessionId)
 
 	@classmethod
 	def getActivePlayers(self, team):	
@@ -51,3 +62,11 @@ class LicenceManager():
 	@classmethod
 	def getLicencesForTeam(self, team):
 		return models.ValidFor.objects.filter(Team=team)
+
+
+	@classmethod
+	def getPlayersWithValidLicences(self, team, validLicences):
+		
+		return models.ValidFor.objects.filter(Team=team, Licence__in=validLicences)
+
+		

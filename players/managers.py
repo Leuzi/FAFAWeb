@@ -5,7 +5,6 @@ from .dto import RegionPlayersDto
 
 class PlayerManager():
 
-
 	@classmethod
 	def getPlayersForRegion(self,region):
 		teams = TeamManager.getTeamsForRegion(region)
@@ -15,9 +14,16 @@ class PlayerManager():
 			team.players = LicenceManager.getLicencesForTeam(team)
 			teamPlayers[team] = team
 
-		print( RegionPlayersDto(region,teamPlayers).getDto())
 		return RegionPlayersDto(region,teamPlayers)
 		
+	@classmethod
+	def getPlayersForTeam(self,region, team):
+		
+		teamPlayers = {}		
+		team.players = LicenceManager.getLicencesForTeam(team)
+		teamPlayers[team] = team
+
+		return RegionPlayersDto(region,teamPlayers).getDto()
 
 	@classmethod
 	def getCurrentPlayers(self,team):

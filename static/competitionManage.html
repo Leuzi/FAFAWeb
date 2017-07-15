@@ -6,7 +6,8 @@
 	<div class="small-box bg-yellow">
 		<div class="inner">
 			<h3>{{competition.Name}}</h3>
-			<p>Se han disputado {{competition.Editions|length}} edici{{competition.Editions|length |pluralize:"ón,ones"}}</p>		
+			<p>Se han disputado {{competition.Editions|length}} edici{{competition.Editions|length |pluralize:"ón,ones"}}</p>	
+			<a type="button" class="btn btn-warning btn-sm" href={%url "newEdition" competition.Id %}>Nueva Edicion</a>	
 		</div>
 		<div class="icon">
 			<i class="fa fa-trophy"></i>

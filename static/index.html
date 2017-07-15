@@ -113,7 +113,7 @@
 				{% if headerDto.Type == "Team" %}
 					<a href={%url "rosterListTeam" %}>
 				{% else %}
-					<a href={%url "rosterListRegion" %}>
+					<a href={%url "rosterListRegion"  headerDto.Id %}>
 				{% endif %}
 			  <p>Rosters disponibles</p>
 			</div>

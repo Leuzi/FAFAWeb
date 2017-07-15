@@ -36,6 +36,9 @@ class Edition(models.Model):
 	Competition = models.ForeignKey(CompetitionType)
 	Active = models.BooleanField(default=False)
 
+	class Meta:
+		unique_together = ('Edition', 'Competition')
+
 
 	
 

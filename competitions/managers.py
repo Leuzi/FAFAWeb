@@ -2,6 +2,7 @@ from . import models
 from FAFAWeb.constants import *
 from .dto import CompetitionTypeDto, CompetitionDto
 from regions.managers import RegionManager
+from datetime import datetime, timedelta, time
 
 class CompetitionManager():
 
@@ -53,3 +54,11 @@ class CompetitionManager():
 		editions =  models.Edition.objects.filter(Competition=competition)
 		
 		return CompetitionDto(competition, editions).getDto()		
+
+	def getCompetitionsForTeam(team):
+		today = datetime.now().date()
+		return models.Edition.objects.filter(Teams__in=[team]).filter(Conditions__StartDate__lte=today,Conditions__EndDate__gte=today)
+
+	def getCompetitionsForRegion(region):
+		today = datetime.now().date()
+		return models.Edition.objects.filter(Competition__Region=region).filter(Conditions__StartDate__lte=today,Conditions__EndDate__gte=today)

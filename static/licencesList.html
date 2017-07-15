@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}   
-
 <section class="content">
 
 {% for region,licences in licences.items %}	
@@ -32,8 +31,9 @@
 							<th>Estado</th>
 							<th>Nombre</th>
 							<th>Tipo</th>	
-							<th>Válido desde</th>
-							<th>Válido hasta</th>
+							<th>Válidez</th>
+							<th>Edad mínima</th>
+							<th>Edad máxima</th>
 							<th>Precio</th>
 							<th>Detalle</th>
 						</tr>
@@ -51,9 +51,14 @@
 								{% endif %}
 								<td>{{licence.Name}}</td>
 								<td>{{licence.Shortening}}</td>
-								<td>{{licence.StartDate}}</td>
-								<td>{{licence.EndDate}}</td>		
-								<td>{{licence.Price}}€</td>
+								<td>Desde el <b>{{licence.StartDate}}</b> hasta el <b>{{licence.EndDate}}</b></td>
+								<td>{{licence.MinimumBirthDate|timesince:licence.StartDate}}</td>
+								{% if licence.MaximumBirthDate %}					
+									<td>{{licence.MaximumBirthDate|timesince:licence.StartDate}}</td>
+								{% else %}
+									<td>No tiene</td>
+								{% endif %}
+								<td>{{licence.Price}} €</td>
 								<td> <a type="button" class="btn btn-block btn-warning btn-sm" href={%url "editLicence" licence.Id %}>Editar</a> </td>
 							</tr>
 						{% endfor %}
