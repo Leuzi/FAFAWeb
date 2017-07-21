@@ -44,7 +44,7 @@ def newPlayer(request, teamId):
 	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
 	selectPlayerForm = SelectPlayerForm(request.POST or None)
 
-	if request.method == "POST:
+	if request.method == "POST":
 		if selePlayerForm.is_valid():
 		
 			player = PlayerManager.findPlayerByIdNumber(selectPlayerForm.cleaned_data['my_form_field_name'])

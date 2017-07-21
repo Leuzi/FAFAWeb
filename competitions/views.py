@@ -118,27 +118,51 @@ def newEdition(request, competitionId):
 	if not PermissionsManager.canCreateEdition(user,region.id):
 		return redirect('/')
 
-	headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
-	formCompetition = CompetitionEditionForm(request.POST or None)
-	formConditions = CompetitionConditionsForm(request.POST or None)
-	edition = Edition()
-	formLicences = CompetitionLicencesForm(request.POST or None, region = region, instance = edition)
-	formTeams = CompetitionTeamsForm(request.POST or None, region = region, instance = edition)
+	if request.method == "GET":
+		headerDto = PermissionsManager.getUserHeaderDto(user).getDto()
+		formCompetition = CompetitionEditionForm()
+		formConditions = CompetitionConditionsForm()		
+		formLicences = CompetitionLicencesForm(region = region)
+		formTeams = CompetitionTeamsForm(region = region)
+		
+		return render(request, 'competitionConditions.html', {'headerDto': headerDto,
+												'formCompetition': formCompetition,
+												'formConditions': formConditions,
+												'formLicences': formLicences,
+												'formTeams': formTeams})	
+	
 
 
-	if request.method == "POST":
+
+	elif request.method == "POST":
+		edition = Edition()
+		
+		formCompetition = CompetitionEditionForm(request.POST, instance = edition)
+		formConditions = CompetitionConditionsForm(request.POST)		
+		formLicences = CompetitionLicencesForm(request.POST,region = region)
+		formTeams = CompetitionTeamsForm(request.POST,region = region)
+	
+		print(formCompetition.is_valid())
+		print(formConditions.is_valid())
+		print(formLicences.is_valid())
+		print(formCompetition.is_valid())
+	
 		if formCompetition.is_valid() and formConditions.is_valid() and formLicences.is_valid() and formTeams.is_valid():
-			edition.Conditions = CompetitionConditions(formConditions)
-			formLicences.save(commit=False)
-			formTeams.save(commit=False)
-			formCompetition.save(commit=False)
+			conditions = formConditions.save(commit=False)
+			edition = formCompetition.save(commit=False)
+			
+			edition.Conditions = conditions
 			edition.save()
 			
+			edition.Licences = formLicences.save(commit=False)
+			edition.Teams = formTeams.save(commit=False)
 			
+			edition.save()
 
 			return manageCompetition(request, competition.Type.id)
 		
-	return render(request, 'competitionConditions.html', {'headerDto': headerDto,
+		else:
+			return render(request, 'competitionConditions.html', {'headerDto': headerDto,
 												'formCompetition': formCompetition,
 												'formConditions': formConditions,
 												'formLicences': formLicences,
